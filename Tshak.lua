@@ -9092,7 +9092,7 @@ end
 else
 return LuaTele.sendText(msg_chat_id,msg_id,'*↯︙امر صورتي معطل*',"md",true)  end end
 if text == "بوت الزخرفه" or text == "اريد بوت زخرفه" or text == "بوت زخرفه" or text == "بوت الزغرفه" or text == "اريد بوت زغرفه" or text == "بوت زغرفه" then
-local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = '‹ اضغط هنا ›', url = 't.me/CAAPbot'},},}}
+local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = '‹ اضغط هنا ›', url = 't.me/HnHBBoT'},},}}
 return LuaTele.sendText(msg_chat_id,msg_id,'*↯︙اضغط للحصول على بوت الزخرفه*',"md",false, false, false, false, reply_markup) end
 if text == "بوت كت تويت" or text == "بوت الكت" or text == "بوت كت" then
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = '‹ اضغط هنا ›', url = 't.me/UY4bot'},},}}
