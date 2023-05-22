@@ -2132,6 +2132,93 @@ local reply_markup = bot.replyMarkup{type = 'inline',data = {{{text = UserId.fir
 return LuaTele.sendText(msg_chat_id,msg_id,'\n↯︙معرفك ⇜ '..UserInfousername..'\n↯︙ايديك ⇜ ❨ `'..UserId..'` ❩\n↯︙رتبتك ⇜ '..RinkBot..'\n↯︙رسائلك ⇜ ❨ '..TotalMsg..' ❩\n↯︙سحكاتك ⇜ ❨ '..TotalEdit..' ❩\n↯︙تفاعلك ⇜ '..TotalMsgT..'\n↯︙نقاطك ⇜ ❨ '..NumberGames..' ❩',"md", false, false, false, false, reply_markup)
 end end
 end
+function CallBackLua(data) 
+if data and data.luatele and data.luatele == "updateNewInlineQuery" then
+local Text = data.query 
+if Text == 'همسه' then
+local input_message_content = {message_text = " ● اهلا بك عزيزي\n ● لارسال الهمسه اكتب يوزر البوت + الهمسه + يوزر العضو\n ● مثال @j_as_bot هلا @Q_o_ll"}	
+local resuult = {{
+type = 'article',
+id = math.random(1,64),
+title = 'اضغط هنا لمعرفه كيفيه ارسال الهمسه',
+input_message_content = input_message_content,
+reply_markup = {
+inline_keyboard ={
+{{text ="˹𝙎𝙤𝙐𝙧𝘾𝙚 𝙉𝙖𝙎𝙖 .⚡", url= "https://t.me/B_O_N_T"}},
+}
+},
+},
+}
+https.request("https://api.telegram.org/bot"..Token..'/answerInlineQuery?inline_query_id='..data.id..'&switch_pm_text=اضغط لارسال الهمسه&switch_pm_parameter=start&results='..JSON.encode(resuult))
+end
+if Text and Text:match("(.*)@(.*)") then
+local hm = {string.match(Text,"(.*)@(.*)")}
+local user = hm[2]
+local hms = hm[1]
+UserId_Info = LuaTele.searchPublicChat(user)
+local idd = UserId_Info.id
+local key = math.random(1,999999999999)
+Redis:set(idd..key.."hms",hms)
+local us = LuaTele.getUser(idd)
+local name = us.first_name
+local input_message_content = {message_text = "● هذه همسه سريه الي ["..name.."](tg://user?id="..idd..")\n ● هو فقط من يستطيع رؤيتها ", parse_mode = 'Markdown'} 
+local resuult = {{
+type = 'article',
+id = math.random(1,64),
+title = 'هذه همسه سريه الي '..name..'',
+input_message_content = input_message_content,
+reply_markup = {
+inline_keyboard ={
+{{text ="اظهار الهمسه 🐣", callback_data = idd.."hmsaa"..data.sender_user_id.."/"..key}},
+}
+},
+},
+}
+https.request("https://api.telegram.org/bot"..Token..'/answerInlineQuery?inline_query_id='..data.id..'&switch_pm_text=اضغط لارسال الهمسه&switch_pm_parameter=start&results='..JSON.encode(resuult))
+end
+end
+if data and data.luatele and data.luatele == "updateNewInlineCallbackQuery" then
+var(data)
+local Text = LuaTele.base64_decode(data.payload.data)
+if Text and Text:match('(.*)hmsaa(.*)/(.*)')  then
+local mk = {string.match(Text,"(.*)hmsaa(.*)/(.*)")}
+local hms = Redis:get(mk[1]..mk[3].."hms")
+if tonumber(mk[1]) == tonumber(data.sender_user_id) or tonumber(mk[2]) == tonumber(data.sender_user_id) then
+https.request("https://api.telegram.org/bot"..Token.."/answerCallbackQuery?callback_query_id="..data.id.."&text="..URL.escape(hms).."&show_alert=true")
+end
+if tonumber(mk[1]) ~= tonumber(data.sender_user_id) or tonumber(mk[2]) ~= tonumber(data.sender_user_id) then
+https.request("https://api.telegram.org/bot"..Token.."/answerCallbackQuery?callback_query_id="..data.id.."&text="..URL.escape("الهمسه ليست لك").."&show_alert=true")
+end
+end
+end
+if data and data.luatele and data.luatele == "updateNewInlineCallbackQuery" then
+local Text = LuaTele.base64_decode(data.payload.data)
+if Text and Text:match('/boin@(%d+)@(%d+)/(%d+)') then
+local ramsesadd = {string.match(Text,"^/boin@(%d+)@(%d+)/(%d+)$")}
+if tonumber(data.sender_user_id) == tonumber(ramsesadd[1]) or tonumber(ramsesadd[2]) == tonumber(data.sender_user_id) then
+local inget = Redis:get(Tshak..'boianbots'..ramsesadd[3]..data.sender_user_id)
+https.request("https://api.telegram.org/bot"..Token..'/answerCallbackQuery?callback_query_id='..data.id..'&text='..URL.escape(inget)..'&show_alert=true')
+else
+https.request("https://api.telegram.org/bot"..Token..'/answerCallbackQuery?callback_query_id='..data.id..'&text='..URL.escape('هذه الهمسه ليست لك')..'&show_alert=true')
+end
+end
+end
+if data and data.luatele and data.luatele == "updateNewInlineQuery" then
+local Text = data.query
+if Text and Text:match("^(.*) @(.*)$")  then
+local username = {string.match(Text,"^(.*) @(.*)$")}
+local UserId_Info = LuaTele.searchPublicChat(username[2])
+if UserId_Info.id then
+local idnum = math.random(1,100000000000)
+local input_message_content = {message_text = 'هذه الهمسه لك ( [@'..username[2]..'] ) عزيزي اضغط لفتحها', parse_mode = 'Markdown'} 
+local reply_markup = {inline_keyboard={{{text = 'اضغط هنا لعرض الهمسه', callback_data = '/boin@'..data.sender_user_id..'@'..UserId_Info.id..'/'..idnum}}}} 
+local resuult = {{type = 'article', id = idnum, title = 'هذه همسه سريه الى [@'..username[2]..']', input_message_content = input_message_content, reply_markup = reply_markup}} 
+https.request("https://api.telegram.org/bot"..Token..'/answerInlineQuery?inline_query_id='..data.id..'&results='..JSON.encode(resuult))
+Redis:set(Tshak..'boianbots'..idnum..UserId_Info.id,username[1])
+Redis:set(Tshak..'boianbots'..idnum..data.sender_user_id,username[1])
+end
+end
+end
 if text == ('ايدي') and msg.reply_to_message_id ~= 0 or text == ('كشف') and msg.reply_to_message_id ~= 0 then
 local Message_Reply = LuaTele.getMessage(msg.chat_id, msg.reply_to_message_id)
 local UserInfo = LuaTele.getUser(Message_Reply.sender_id.user_id)
