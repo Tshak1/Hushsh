@@ -14234,6 +14234,35 @@ keyboardd.inline_keyboard = {
 local msg_id = msg.id/2097152/0.5
 https.request("https://api.telegram.org/bot"..Token..'/sendphoto?chat_id=' .. msg.chat_id .. '&photo=https://t.me/SeriesWaTaN/'..Abs..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
 end
+if text == "صورتي" then
+if Redis:get(Tshak.."myphoto"..msg_chat_id)  then
+ LuaTele.sendText(msg_chat_id,msg_id,'*● الصوره معطله*',"md",true) 
+else
+local photo = LuaTele.getUserProfilePhotos(msg.sender_id.user_id)
+if photo.total_count > 0 then
+keyboard = {} 
+keyboard.inline_keyboard = {
+{
+{text = 'صورتك التاليه', callback_data=msg.sender_id.user_id.."/sorty2"},
+},
+}
+local rep = msg.id/2097152/0.5
+https.request("https://api.telegram.org/bot"..Token.."/sendphoto?chat_id="..msg.chat_id.."&reply_to_message_id="..rep.."&photo="..photo.photos[1].sizes[#photo.photos[1].sizes].photo.remote.id.."&caption="..URL.escape(" ●  عدد صورك هو "..photo.total_count.." صوره").."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
+else
+return  LuaTele.sendText(msg_chat_id,msg_id,'*● لا توجد صوره ف حسابك*',"md",true) 
+end
+end
+end
+if text == "انمي "  then 
+ban = math.random(1,40); 
+local Text ='لاختيار انمي اخر اضغط ع زر بالاسفل' 
+keyboard = {}  
+keyboard.inline_keyboard = {
+{{text = 'تويت  اخري', callback_data = msg.sender_id.user_id..'/tuet'}}, 
+} 
+local msg_id = msg.id/2097152/0.5 
+https.request("https://api.telegram.org/bot"..Token..'/sendphoto?chat_id=' .. msg_chat_id .. '&photo=https://t.me/shhdhn/'..ban..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
+end
 if text == "⇜ ميمز -" then
 Abs = math.random(2,140); 
 local Text ='*᥀︙تم اختيار الميمز لك فقط*'
@@ -14243,24 +14272,6 @@ keyboard.inline_keyboard = {
 }
 local msg_id = msg.id/2097152/0.5
 https.request("https://api.telegram.org/bot"..Token..'/sendVoice?chat_id=' .. msg.chat_id .. '&voice=https://t.me/remixsource/'..Abs..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
-end
-if Text == '/alii' then 
-local photo = LuaTele.getUserProfilePhotos(Tshak) 
-local ph = photo.photos[1].sizes[#photo.photos[1].sizes].photo.remote.id 
-pph ={ 
-type = "photo", 
-media = ph, 
-caption ='هلو حبيبي كلخرا ورجع',
-parse_mode = "Markdown"                                                                                                                                                                
-}      
-keyboard = {}  
-keyboard.inline_keyboard = { 
-{ 
-{text = '- 𝙱𝙰𝙲𝙺 -', callback_data="/bnbak"}, 
-}, 
-} 
-local ban = Msg_id/2097152/0.5 
-https.request("http://api.telegram.org/bot"..Token.."/editmessagemedia?chat_id="..ChatId.."&message_id="..ban.."&media="..JSON.encode(pph).."&reply_markup="..JSON.encode(keyboard)) 
 end
 if text == "⇜ ريمكس -" or text == "ريماكس" then 
 Abs = math.random(2,140); 
