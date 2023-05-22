@@ -2091,35 +2091,6 @@ Get_Is_Id = Redis:get(Tshak.."Tshak:Set:Id:Group"..msg_chat_id)
 if Redis:get(Tshak.."Tshak:Status:IdPhoto"..msg_chat_id) then
 if Get_Is_Id then
 local Get_Is_Id = Get_Is_Id:gsub('#AddMem',NumAdd) 
-if text == ("ايدي") and msg.reply_to_message_id == 0 or text == ("id") and msg.reply_to_message_id == 0 then
-if ChannelJoin(msg) == false then
-local Get_Chat = LuaTele.getChat(Redis:get(Tshak..'Tshak:ChanneliD:Join'))
-local NcH = (Redis:get(Tshak.."Tshak:CH:Bot") or Get_Chat.title)
-local NcHlink = (Redis:get(Tshak.."Tshak:CHlink:Bot") or "↯︙عذراً لاتستطيع استخدام البوت !\n↯︙عليك الاشتراك في القناة اولاً :")
-local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = NcH, url = 't.me/'..Redis:get(Tshak..'Tshak:Channel:Join')},},}}
-return LuaTele.sendText(msg.chat_id,msg.id,NcHlink,"md",false, false, false, false, reply_markup) end 
-if not Redis:get(Tshak.."Tshak:Status:Id"..msg_chat_id) then return false end
-local UserInfo = LuaTele.getUser(msg.sender_id.user_id)
-local photo = LuaTele.getUserProfilePhotos(msg.sender_id.user_id)
-local UserId = msg.sender_id.user_id
-local RinkBot = msg.Name_Controller
-local TotalMsg = Redis:get(Tshak..'Tshak:Num:Message:User'..msg_chat_id..':'..msg.sender_id.user_id) or 0
-local TotalPhoto = photo.total_count or 0
-local TotalEdit = Redis:get(Tshak..'Tshak:Num:Message:Edit'..msg_chat_id..msg.sender_id.user_id) or 0
-local TotalMsgT = Total_message(TotalMsg) 
-local NumberGames = Redis:get(Tshak.."Tshak:Num:Add:Games"..msg.chat_id..msg.sender_id.user_id) or 0
-local NumAdd = Redis:get(Tshak.."Tshak:Num:Add:Memp"..msg.chat_id..":"..msg.sender_id.user_id) or 0
-local Texting = {'ملاك وناسيك بكروبنه',"حلقوم واللة ","اطلق صوره","كيكك واللة","لازك بيها غيرها عاد",}
-local Description = Texting[math.random(#Texting)]
-if UserInfo.username then
-UserInfousername = '@'..UserInfo.username..''
-else
-UserInfousername = 'لا يوجد'
-end
-Get_Is_Id = Redis:get(Tshak.."Tshak:Set:Id:Group"..msg_chat_id)
-if Redis:get(Tshak.."Tshak:Status:IdPhoto"..msg_chat_id) then
-if Get_Is_Id then
-local Get_Is_Id = Get_Is_Id:gsub('#AddMem',NumAdd) 
 local Get_Is_Id = Get_Is_Id:gsub('#id',msg.sender_id.user_id) 
 local Get_Is_Id = Get_Is_Id:gsub('#username',UserInfousername) 
 local Get_Is_Id = Get_Is_Id:gsub('#msgs',TotalMsg) 
