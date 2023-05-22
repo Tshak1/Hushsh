@@ -13717,7 +13717,7 @@ Redis:sadd(Tshak..'Tshak:Num:User:Pv',msg.sender_id.user_id)
 if not msg.DevelopersAS then
 if not Redis:get(Tshak.."Tshak:Start:Bot") then
 local CmdStart = '↯︙مرحبا انا بوت اسمي ‹ '..(Redis:get(Tshak.."Tshak:Name:Bot") or "تشاك")..' ›\n↯︙اختصاصي التسليه وحماية المجموعات\n↯︙من المخربين والتفليش والسبام والخ\n↯︙فقط قم برفعي ادمن في مجموعتك\n↯︙وارسل كلمة ⇜ ‹ تفعيل ›\n ↯︙ارسل /play للتمتع بأوامر الأعضاء'
-local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = '‹ المطور ›', url = "t.me/"..UserSudo..""},},{{text = '‹ قناة السورس ›', url = 't.me/sourcetshak'},{text = '‹ لتنصيب بوت ›', url = msg.sender_id.user_id.. ='/alii'},},{{text = '‹ اضفني الى مجموعتك ›', url = 't.me/'..UserBot..'?startgroup=new'},},}}
+local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = '‹ المطور ›', url = "t.me/"..UserSudo..""},},{{text = '‹ قناة السورس ›', url = 't.me/sourcetshak'},{text = '‹ لتنصيب بوت ›', url ='t.me/ffmrd'},},{{text = '‹ اضفني الى مجموعتك ›', url = 't.me/'..UserBot..'?startgroup=new'},},}}
 return LuaTele.sendText(msg_chat_id,msg_id,CmdStart,"md",false, false, false, false, reply_markup)
 else
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = '‹ المطور ›', url = "t.me/"..UserSudo..""},},{{text = '‹ قناة السورس ›', url = 't.me/sourcetshak'},{text = '‹ لتنصيب بوت ›', url = 't.me/S5llll'},},{{text = '‹ اضفني الى مجموعتك ›', url = 't.me/'..UserBot..'?startgroup=new'},},}}
