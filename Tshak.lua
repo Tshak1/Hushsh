@@ -13717,7 +13717,7 @@ Redis:sadd(Tshak..'Tshak:Num:User:Pv',msg.sender_id.user_id)
 if not msg.DevelopersAS then
 if not Redis:get(Tshak.."Tshak:Start:Bot") then
 local CmdStart = '↯︙مرحبا انا بوت اسمي ‹ '..(Redis:get(Tshak.."Tshak:Name:Bot") or "تشاك")..' ›\n↯︙اختصاصي التسليه وحماية المجموعات\n↯︙من المخربين والتفليش والسبام والخ\n↯︙فقط قم برفعي ادمن في مجموعتك\n↯︙وارسل كلمة ⇜ ‹ تفعيل ›\n ↯︙ارسل /play للتمتع بأوامر الأعضاء'
-local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = '‹ المطور ›', url = "t.me/"..UserSudo..""},},{{text = '‹ قناة السورس ›', url = 't.me/sourcetshak'},{text = '‹ لتنصيب بوت ›', url = 't.me/S5llll'},},{{text = '‹ اضفني الى مجموعتك ›', url = 't.me/'..UserBot..'?startgroup=new'},},}}
+local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = '‹ المطور ›', url = "t.me/"..UserSudo..""},},{{text = '‹ قناة السورس ›', url = 't.me/sourcetshak'},{text = '‹ لتنصيب بوت ›', callback_data ='/alii'},},{{text = '‹ اضفني الى مجموعتك ›', url = 't.me/'..UserBot..'?startgroup=new'},},}}
 return LuaTele.sendText(msg_chat_id,msg_id,CmdStart,"md",false, false, false, false, reply_markup)
 else
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = '‹ المطور ›', url = "t.me/"..UserSudo..""},},{{text = '‹ قناة السورس ›', url = 't.me/sourcetshak'},{text = '‹ لتنصيب بوت ›', url = 't.me/S5llll'},},{{text = '‹ اضفني الى مجموعتك ›', url = 't.me/'..UserBot..'?startgroup=new'},},}}
@@ -14243,6 +14243,35 @@ keyboard.inline_keyboard = {
 }
 local msg_id = msg.id/2097152/0.5
 https.request("https://api.telegram.org/bot"..Token..'/sendVoice?chat_id=' .. msg.chat_id .. '&voice=https://t.me/remixsource/'..Abs..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
+end
+if Text == '/alii' then 
+local photo = LuaTele.getUserProfilePhotos(Tshak) 
+local ph = photo.photos[1].sizes[#photo.photos[1].sizes].photo.remote.id 
+pph ={ 
+type = "photo", 
+media = ph, 
+caption = '-اهـلا بك عزيزي في نبذه عن البوت .
+- انا بوت حمايه عملي هو حمايه الكروبات .
+- حمايه الكروبات من تفليش والسبام والفشار والخ ...
+- تفعيلي سهل اولا قم برفعي مشرف .
+ - ثانيا قم بكتابه امر تفعيل فقط في الكروب .
+- وسيتم تفعيل البوت تلقائيا .
+- يحتوي ع العديد من المميزات تابع قناه السورس لمعرفه اخر التحديثات .
+- احذر من منتحلين البوت المماثل .
+- لشراء نسخه تواصل :
+- لشراء بوت مماثل :
+- قناه السورس :
+', 
+parse_mode = "Markdown"                                                                                                                                                                
+}      
+keyboard = {}  
+keyboard.inline_keyboard = { 
+{ 
+{text = '- 𝙱𝙰𝙲𝙺 -', callback_data="/bnbak"}, 
+}, 
+} 
+local ban = Msg_id/2097152/0.5 
+https.request("http://api.telegram.org/bot"..Token.."/editmessagemedia?chat_id="..ChatId.."&message_id="..ban.."&media="..JSON.encode(pph).."&reply_markup="..JSON.encode(keyboard)) 
 end
 if text == "⇜ ريمكس -" or text == "ريماكس" then 
 Abs = math.random(2,140); 
