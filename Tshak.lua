@@ -1640,7 +1640,7 @@ local tt =[[
 keyboard = {} 
 keyboard.inline_keyboard = {{{text = '- قناه السورس .', url = "https://t.me/sourcetshak"}},}
 local msgg = msg_id/2097152/0.5
-https.request("https://api.telegram.org/bot"..Token.."/sendphoto?chat_id=" .. msg_chat_id .. "&photo=https://t.me/tshakk&caption=".. URL.escape(tt).."&reply_to_message_id="..msgg.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) end
+https.request("https://api.telegram.org/bot"..Token.."/sendphoto?chat_id=" .. msg_chat_id .. "&photo=https://t.me/sourcetshak&caption=".. URL.escape(tt).."&reply_to_message_id="..msgg.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) end
 if text == 'مبرمج السورس' or text == 'حربي' or text == 'مبرمج السورس' then
 local tht =[[
 ↯︙[مبرمج السورس](https://t.me/S5llll) .
@@ -2380,7 +2380,7 @@ end
 
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {
 {
-{text = 'رر : '..TheBasicsz, data =msg.sender_id.user_id..'/statusTheBasicsz/'..UserId_Info.id},{text = 'رفع منشئ : '..Originatorsz, data =msg.sender_id.user_id..'/statusOriginatorsz/'..UserId_Info.id},
+{text = 'رفع منشئ اساسي : '..TheBasicsz, data =msg.sender_id.user_id..'/statusTheBasicsz/'..UserId_Info.id},{text = 'رفع منشئ : '..Originatorsz, data =msg.sender_id.user_id..'/statusOriginatorsz/'..UserId_Info.id},
 },
 {
 {text = 'رفع مدير : '..Managersz, data =msg.sender_id.user_id..'/statusManagersz/'..UserId_Info.id},{text = 'رفع ادمن : '..Addictivez, data =msg.sender_id.user_id..'/statusAddictivez/'..UserId_Info.id},
@@ -5153,7 +5153,7 @@ return LuaTele.sendText(msg.chat_id,msg.id,NcHlink,"md",false, false, false, fal
 if msg.can_be_deleted_for_all_users == false then return LuaTele.sendText(msg_chat_id,msg_id,"\n*↯︙عذراً البوت ليس ادمن في المجموعة يرجى ترقيته وتفعيل الصلاحيات له *","md",true)  end
 local Info_Members = LuaTele.getSupergroupMembers(msg_chat_id, "Bots", "*", 0, 200)
 local List_Members = Info_Members.members
-listBots = '\n↯︙قائمة البوتات ⇜ ⤈\n •═════•| TshaK |•═════•*\n'
+listBots = '\n*↯︙قائمة البوتات ⇜ ⤈\n •═════•| TshaK |•═════•*\n'
 x = 0
 for k, v in pairs(List_Members) do
 local UserInfo = LuaTele.getUser(v.member_id.user_id)
@@ -13150,7 +13150,7 @@ if text == '‹ تحديث السورس ›' then
 if not msg.DevelopersAS then 
 return LuaTele.sendText(msg_chat_id,msg_id,'\n↯︙هذا الامر للمطور الاساسي واعلى فقط',"md",true)  end
 os.execute('rm -rf Tshak.lua')
-download('https://raw.githubusercontent.com/Rasul-Muntazar/Tshak/master/Tshak.lua','Tshak.lua')
+download('https://raw.githubusercontent.com/Tshak1/Hushsh/master/Tshak.lua','Tshak.lua')
 print("\27[31;47m\n          ( تم تحديث السورس )          \n\27[0;34;49m\n") 
 return LuaTele.sendText(msg_chat_id,msg_id,'\n*↯︙تم تحديث السورس* ',"md",true)  end
 if text == '‹ تحديث الملفات ›' then
@@ -14250,7 +14250,7 @@ local UserId = Text:match('(%d+)/UpdateSo')
 if tonumber(IdUser) == tonumber(UserId) then 
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = '‹ رجوع ›', data =UserId..'/'.. 'UpdateBack'},},}}
 os.execute('rm -rf Tshak.lua')
-download('https://raw.githubusercontent.com/Rasul-Muntazar/Tshak/master/Tshak.lua','Tshak.lua')
+download('https://raw.githubusercontent.com/Tshak1/Hushsh/master/Tshak.lua','Tshak.lua')
 print("\27[31;47m\n          ( تم تحديث السورس )          \n\27[0;34;49m\n") 
 return LuaTele.editMessageText(ChatId,Msg_id, '*↯︙تم تحديث السورس*', 'md',true, false, reply_markup) end end
 --
@@ -14258,9 +14258,12 @@ if Text and Text:match('(%d+)/UpdateFi') then
 local UserId = Text:match('(%d+)/UpdateFi')
 if tonumber(IdUser) == tonumber(UserId) then 
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = '‹ رجوع ›', data =UserId..'/'.. 'UpdateBack'},},}}
+os.execute('rm -rf Tshak.lua')
+download('https://raw.githubusercontent.com/Tshak1/Hushsh/master/Tshak.lua','Tshak.lua')
 print("\27[31;47m\n        ( تم تحديث الملفات )        \n\27[0;34;49m\n") 
 LuaTele.editMessageText(ChatId,Msg_id, '*↯︙تم تحديث ملفات البوت*', 'md',true, false, reply_markup)
-dofile('Tshak.lua')  end end
+end 
+end
 --
 if Text and Text:match('(%d+)/UpdateBack') then
 local UserId = Text:match('(%d+)/UpdateBack')
