@@ -2091,6 +2091,35 @@ Get_Is_Id = Redis:get(Tshak.."Tshak:Set:Id:Group"..msg_chat_id)
 if Redis:get(Tshak.."Tshak:Status:IdPhoto"..msg_chat_id) then
 if Get_Is_Id then
 local Get_Is_Id = Get_Is_Id:gsub('#AddMem',NumAdd) 
+if text == ("ايدي") and msg.reply_to_message_id == 0 or text == ("id") and msg.reply_to_message_id == 0 then
+if ChannelJoin(msg) == false then
+local Get_Chat = LuaTele.getChat(Redis:get(Tshak..'Tshak:ChanneliD:Join'))
+local NcH = (Redis:get(Tshak.."Tshak:CH:Bot") or Get_Chat.title)
+local NcHlink = (Redis:get(Tshak.."Tshak:CHlink:Bot") or "↯︙عذراً لاتستطيع استخدام البوت !\n↯︙عليك الاشتراك في القناة اولاً :")
+local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = NcH, url = 't.me/'..Redis:get(Tshak..'Tshak:Channel:Join')},},}}
+return LuaTele.sendText(msg.chat_id,msg.id,NcHlink,"md",false, false, false, false, reply_markup) end 
+if not Redis:get(Tshak.."Tshak:Status:Id"..msg_chat_id) then return false end
+local UserInfo = LuaTele.getUser(msg.sender_id.user_id)
+local photo = LuaTele.getUserProfilePhotos(msg.sender_id.user_id)
+local UserId = msg.sender_id.user_id
+local RinkBot = msg.Name_Controller
+local TotalMsg = Redis:get(Tshak..'Tshak:Num:Message:User'..msg_chat_id..':'..msg.sender_id.user_id) or 0
+local TotalPhoto = photo.total_count or 0
+local TotalEdit = Redis:get(Tshak..'Tshak:Num:Message:Edit'..msg_chat_id..msg.sender_id.user_id) or 0
+local TotalMsgT = Total_message(TotalMsg) 
+local NumberGames = Redis:get(Tshak.."Tshak:Num:Add:Games"..msg.chat_id..msg.sender_id.user_id) or 0
+local NumAdd = Redis:get(Tshak.."Tshak:Num:Add:Memp"..msg.chat_id..":"..msg.sender_id.user_id) or 0
+local Texting = {'ملاك وناسيك بكروبنه',"حلقوم واللة ","اطلق صوره","كيكك واللة","لازك بيها غيرها عاد",}
+local Description = Texting[math.random(#Texting)]
+if UserInfo.username then
+UserInfousername = '@'..UserInfo.username..''
+else
+UserInfousername = 'لا يوجد'
+end
+Get_Is_Id = Redis:get(Tshak.."Tshak:Set:Id:Group"..msg_chat_id)
+if Redis:get(Tshak.."Tshak:Status:IdPhoto"..msg_chat_id) then
+if Get_Is_Id then
+local Get_Is_Id = Get_Is_Id:gsub('#AddMem',NumAdd) 
 local Get_Is_Id = Get_Is_Id:gsub('#id',msg.sender_id.user_id) 
 local Get_Is_Id = Get_Is_Id:gsub('#username',UserInfousername) 
 local Get_Is_Id = Get_Is_Id:gsub('#msgs',TotalMsg) 
@@ -2100,14 +2129,19 @@ local Get_Is_Id = Get_Is_Id:gsub('#auto',TotalMsgT)
 local Get_Is_Id = Get_Is_Id:gsub('#Description',Description) 
 local Get_Is_Id = Get_Is_Id:gsub('#game',NumberGames) 
 local Get_Is_Id = Get_Is_Id:gsub('#photos',TotalPhoto) 
-if photo.total_count > 0 then return LuaTele.sendPhoto(msg.chat_id, msg.id, photo.photos[1].sizes[#photo.photos[1].sizes].photo.remote.id,Get_Is_Id)
+local reply_markup = bot.replyMarkup{type = 'inline',data = {{{text = UserId.first_name, url = "https://t.me/"..UserId.username..""}},}}
+if photo.total_count > 0 then return LuaTele.sendPhoto(msg.chat_id, msg.id, photo.photos[1].sizes[#photo.photos[1].sizes].photo.remote.id,Get_Is_Id,'md', true, nil, nil, nil, nil, nil, nil, nil, nil, reply_markup)
 else
-return LuaTele.sendText(msg_chat_id,msg_id,Get_Is_Id,"md",true) 
+local reply_markup = bot.replyMarkup{type = 'inline',data = {{{text = UserId.first_name, url = "https://t.me/"..UserId.username..""}},}}
+return LuaTele.sendText(msg_chat_id,msg_id,Get_Is_Id,"md", false, false, false, false, reply_markup) 
 end
 else
-if photo.total_count > 0 then return LuaTele.sendPhoto(msg.chat_id, msg.id, photo.photos[1].sizes[#photo.photos[1].sizes].photo.remote.id,'\n↯︙'..Description..'\n↯︙معرفك ⇜ '..UserInfousername..'\n↯︙ايديك ⇜ ❨ '..UserId..' ❩\n↯︙رتبتك ⇜ '..RinkBot..'\n↯︙صورك ⇜ ❨ '..TotalPhoto..' ❩\n↯︙رسائلك ⇜ ❨ '..TotalMsg..' ❩\n↯︙سحكاتك ⇜ ❨ '..TotalEdit..' ❩\n↯︙تفاعلك ⇜ '..TotalMsgT..'\n↯︙نقاطك ⇜ ❨ '..NumberGames..' ❩', "md")
+local reply_markup = bot.replyMarkup{type = 'inline',data = {{{text = UserId.first_name, url = "https://t.me/"..UserId.username..""}},}}
+if photo.total_count > 0 then return LuaTele.sendPhoto(msg.chat_id, msg.id, photo.photos[1].sizes[#photo.photos[1].sizes].photo.remote.id,'\n↯︙'..Description..'\n↯︙معرفك ⇜ '..UserInfousername..'\n↯︙ايديك ⇜ ❨ '..UserId..' ❩\n↯︙رتبتك ⇜ '..RinkBot..'\n↯︙صورك ⇜ ❨ '..TotalPhoto..' ❩\n↯︙رسائلك ⇜ ❨ '..TotalMsg..' ❩\n↯︙سحكاتك ⇜ ❨ '..TotalEdit..' ❩\n↯︙تفاعلك ⇜ '..TotalMsgT..'\n↯︙نقاطك ⇜ ❨ '..NumberGames..' ❩','md', true, nil, nil, nil, nil, nil, nil, nil, nil, reply_markup)
 else
-return LuaTele.sendText(msg_chat_id,msg_id,'\n↯︙معرفك ⇜ '..UserInfousername..'\n↯︙ايديك ⇜ ❨ `'..UserId..'` ❩\n↯︙رتبتك ⇜ '..RinkBot..'\n↯︙رسائلك ⇜ ❨ '..TotalMsg..' ❩\n↯︙سحكاتك ⇜ ❨ '..TotalEdit..' ❩\n↯︙تفاعلك ⇜ '..TotalMsgT..'\n↯︙نقاطك ⇜ ❨ '..NumberGames..' ❩',"md",true)  end end
+local reply_markup = bot.replyMarkup{type = 'inline',data = {{{text = UserId.first_name, url = "https://t.me/"..UserId.username..""}},}}
+return LuaTele.sendText(msg_chat_id,msg_id,'\n↯︙معرفك ⇜ '..UserInfousername..'\n↯︙ايديك ⇜ ❨ `'..UserId..'` ❩\n↯︙رتبتك ⇜ '..RinkBot..'\n↯︙رسائلك ⇜ ❨ '..TotalMsg..' ❩\n↯︙سحكاتك ⇜ ❨ '..TotalEdit..' ❩\n↯︙تفاعلك ⇜ '..TotalMsgT..'\n↯︙نقاطك ⇜ ❨ '..NumberGames..' ❩',"md", false, false, false, false, reply_markup) 
+end end
 else
 if Get_Is_Id then
 local Get_Is_Id = Get_Is_Id:gsub('#AddMem',NumAdd) 
@@ -2120,9 +2154,12 @@ local Get_Is_Id = Get_Is_Id:gsub('#auto',TotalMsgT)
 local Get_Is_Id = Get_Is_Id:gsub('#Description',Description) 
 local Get_Is_Id = Get_Is_Id:gsub('#game',NumberGames) 
 local Get_Is_Id = Get_Is_Id:gsub('#photos',TotalPhoto) 
-return LuaTele.sendText(msg_chat_id,msg_id,'['..Get_Is_Id..']',"md",true) 
+local reply_markup = bot.replyMarkup{type = 'inline',data = {{{text = UserId.first_name, url = "https://t.me/"..UserId.username..""}},}}
+return LuaTele.sendText(msg_chat_id,msg_id,'['..Get_Is_Id..']',"md", false, false, false, false, reply_markup)
 else
-return LuaTele.sendText(msg_chat_id,msg_id,'\n↯︙معرفك ⇜ '..UserInfousername..'\n↯︙ايديك ⇜ ❨ `'..UserId..'` ❩\n↯︙رتبتك ⇜ '..RinkBot..'\n↯︙رسائلك ⇜ ❨ '..TotalMsg..' ❩\n↯︙سحكاتك ⇜ ❨ '..TotalEdit..' ❩\n↯︙تفاعلك ⇜ '..TotalMsgT..'\n↯︙نقاطك ⇜ ❨ '..NumberGames..' ❩',"md",true)  end end
+local reply_markup = bot.replyMarkup{type = 'inline',data = {{{text = UserId.first_name, url = "https://t.me/"..UserId.username..""}},}}
+return LuaTele.sendText(msg_chat_id,msg_id,'\n↯︙معرفك ⇜ '..UserInfousername..'\n↯︙ايديك ⇜ ❨ `'..UserId..'` ❩\n↯︙رتبتك ⇜ '..RinkBot..'\n↯︙رسائلك ⇜ ❨ '..TotalMsg..' ❩\n↯︙سحكاتك ⇜ ❨ '..TotalEdit..' ❩\n↯︙تفاعلك ⇜ '..TotalMsgT..'\n↯︙نقاطك ⇜ ❨ '..NumberGames..' ❩',"md", false, false, false, false, reply_markup)
+end end
 end
 if text == ('ايدي') and msg.reply_to_message_id ~= 0 or text == ('كشف') and msg.reply_to_message_id ~= 0 then
 local Message_Reply = LuaTele.getMessage(msg.chat_id, msg.reply_to_message_id)
