@@ -5591,7 +5591,7 @@ keyboard.inline_keyboard = {{{text = '‹ مره اخرى ›', callback_data = 
 }
 }
 local msg_id = msg.id/2097152/0.5
-https.request("https://api.telegram.org/bot"..Token..'/sendVoice?chat_id=' .. msg.chat_id .. '&voice=https://t.me/AudiosDavid/'..Abs..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) end
+https.request("https://api.telegram.org/bot"..Token..'/sendVoice?chat_id=' .. msg.chat_id .. '&voice=https://t.me/TEAMSUL/'..Abs..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) end
 if text == "متحركه" then
 if not Redis:get(Tshak.."Tshak:Status:distraction2"..msg_chat_id) then return LuaTele.sendText(msg_chat_id,msg_id,"↯︙عذراً امر متحركه معطل","md",true) end 
 Abs = math.random(4,1075); 
@@ -5623,6 +5623,34 @@ keyboard.inline_keyboard = {{{text = '‹ مره اخرى ›', callback_data = 
 }
 local msg_id = msg.id/2097152/0.5
 https.request("https://api.telegram.org/bot"..Token..'/sendVoice?chat_id=' .. msg.chat_id .. '&voice=https://t.me/RapEthan/'..Abs..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
+end
+if text == 'تفعيل التاكات' or text == 'تفعيل التاك التلقائي' then
+Redis:set(Tshak.."Tshak:Tagat"..msg.chat_id,true) 
+return LuaTele.sendText(msg.chat_id,msg_id,Reply_Status(msg.sender_id.user_id,"*᥀︙تم تفعيل التاك التلقائي *").unLock,"md",true) 
+end
+
+if text == 'تعطيل التاك التلقائي' or text == 'تعطيل التاكات' then
+Redis:del(Tshak.."Tshak:Tagat"..msg.chat_id) 
+return LuaTele.sendText(msg.chat_id,msg_id,Reply_Status(msg.sender_id.user_id,"*᥀︙تم تعطيل التاك التلقائي *").unLock,"md",true) 
+end
+if msg and Redis:get(Tshak.."Tshak:Tagat"..msg.chat_id) then
+if not Redis:get(Tshak..":"..msg.chat_id..":tag") then
+local Info = LuaTele.searchChatMembers(msg.chat_id, "*", 200)
+local members = Info.members
+local InfoUser = LuaTele.getUser(members[math.random(#members)].member_id.user_id)
+local texting = {"• تعال لك وين طامس :","• الطف مخلوق حياتي 💖 :","• الـهَيـبة 💖 :","• يـا قمـري ❤️‍🔥 :","• مس يحلو 🌚🤍 :","• تعا مجمعين ناقصه بس انت يروحي 😔💖 :","• وين طامس يحلو 🌚❤️‍🔥 :","• تعا نورنه 😉🤍 :","• احبك يحلو 😂👽 :","• حنسوي العاب تعا 🌚💗 :","• هاا طمست 😉🤍 :",}
+tagname = InfoUser.first_name.."ْ"
+tagname = tagname:gsub('"',"")
+tagname = tagname:gsub('"',"")
+tagname = tagname:gsub("`","")
+tagname = tagname:gsub("*","") 
+tagname = tagname:gsub("_","")
+tagname = tagname:gsub("]","")
+tagname = tagname:gsub("[[]","")
+usr = "["..tagname.."](tg://user?id="..InfoUser.id..")"
+Redis:setex(Tshak..":"..msg.chat_id..":tag",30,true)
+LuaTele.sendText(msg.chat_id,0,'*'..texting[math.random(#texting)]..'*'..usr,'md') 
+end
 end
 if text == "ميمز" then
 if not Redis:get(Tshak.."Tshak:Status:distraction9"..msg_chat_id) then return LuaTele.sendText(msg_chat_id,msg_id,"↯︙عذراً امر ميمز معطل","md",true) end 
