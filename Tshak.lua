@@ -2132,9 +2132,6 @@ local reply_markup = bot.replyMarkup{type = 'inline',data = {{{text = UserId.fir
 return LuaTele.sendText(msg_chat_id,msg_id,'\n↯︙معرفك ⇜ '..UserInfousername..'\n↯︙ايديك ⇜ ❨ `'..UserId..'` ❩\n↯︙رتبتك ⇜ '..RinkBot..'\n↯︙رسائلك ⇜ ❨ '..TotalMsg..' ❩\n↯︙سحكاتك ⇜ ❨ '..TotalEdit..' ❩\n↯︙تفاعلك ⇜ '..TotalMsgT..'\n↯︙نقاطك ⇜ ❨ '..NumberGames..' ❩',"md", false, false, false, false, reply_markup)
 end end
 end
-function CallBackLua(data) 
-if data and data.luatele and data.luatele == "updateNewInlineQuery" then
-local Text = data.query 
 if Text == 'همسه' then
 local input_message_content = {message_text = " ● اهلا بك عزيزي\n ● لارسال الهمسه اكتب يوزر البوت + الهمسه + يوزر العضو\n ● مثال @j_as_bot هلا @Q_o_ll"}	
 local resuult = {{
