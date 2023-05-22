@@ -1640,7 +1640,7 @@ local tt =[[
 keyboard = {} 
 keyboard.inline_keyboard = {{{text = '- قناه السورس .', url = "https://t.me/sourcetshak"}},}
 local msgg = msg_id/2097152/0.5
-https.request("https://api.telegram.org/bot"..Token.."/sendphoto?chat_id=" .. msg_chat_id .. "&photo=https://t.me/tshakk&caption=".. URL.escape(tt).."&reply_to_message_id="..msgg.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) end
+https.request("https://api.telegram.org/bot"..Token.."/sendphoto?chat_id=" .. msg_chat_id .. "&photo=https://t.me/tshakk/2&caption=".. URL.escape(tt).."&reply_to_message_id="..msgg.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) end
 if text == 'مبرمج السورس' or text == 'حربي' or text == 'مبرمج السورس' then
 local tht =[[
 ↯︙[مبرمج السورس](https://t.me/S5llll) .
