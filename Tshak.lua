@@ -14250,8 +14250,7 @@ local ph = photo.photos[1].sizes[#photo.photos[1].sizes].photo.remote.id
 pph ={ 
 type = "photo", 
 media = ph, 
-caption = '
-هلو', 
+caption ='هلو حبيبي كلخرا ورجع',
 parse_mode = "Markdown"                                                                                                                                                                
 }      
 keyboard = {}  
