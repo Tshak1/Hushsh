@@ -9243,9 +9243,9 @@ Text_Zhrfa = '1 -`'..Zh_Ar1..'`'..
 Text_Zhrfa = Text_Zhrfa.."\n•  اضغط ع الاسم ليتم النسخ \n✓"
 return LuaTele.sendText(msg_chat_id,msg_id,Text_Zhrfa,"md",true)  
 end
-if Redis:get(NASA..":Zhrfinlin:en"..msg.sender_id.user_id) then
-Redis:del(NASA..":Zhrfinlin:en"..msg.sender_id.user_id)
-Redis:set(NASA..msg_chat_id..msg.sender_id.user_id.."zkrf:text", text)
+if Redis:get(Tshak..":Zhrfinlin:en"..msg.sender_id.user_id) then
+Redis:del(Tshak..":Zhrfinlin:en"..msg.sender_id.user_id)
+Redis:set(Tshak..msg_chat_id..msg.sender_id.user_id.."zkrf:text", text)
 if string.len(text) > 300 then
 return LuaTele.sendText(msg_chat_id,msg_id,"•  لا يمكنك زخرفه اكثر من 20 حرف \n•  ارسل امر زخرفه وحاول مجددا بحروف اقل","md",true)  
 elseif text:match("\n") then
