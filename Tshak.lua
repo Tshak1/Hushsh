@@ -9119,6 +9119,47 @@ return LuaTele.sendText(msg_chat_id,msg_id,'*↯︙لا توجد صوره في �
 end
 else
 return LuaTele.sendText(msg_chat_id,msg_id,'*↯︙امر صورتي معطل*',"md",true)  end end
+if text == "نمله" then 
+photo = 'https://t.me/apqiy/110' 
+keyboard = {}  
+keyboard.inline_keyboard = { 
+{ 
+{text = '🐜', callback_data=msg.sender_id.user_id.."/nmla"}, 
+}, 
+} 
+local rep = msg.id/2097152/0.5 
+https.request("https://api.telegram.org/bot"..Token.."/sendphoto?chat_id="..msg.chat_id.."&reply_to_message_id="..rep.."&photo="..photo.."&caption="..URL.escape(" إضغط علي النمله 🐜").."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
+end
+if text == "زوجني" or text == "جوزني"  then 
+local Info_Members = LuaTele.searchChatMembers(msg_chat_id, "*", 200)
+x = 0 
+tags = 0 
+local list = Info_Members.members
+v = list[math.random(#list)]
+local UserInfo = LuaTele.getUser(v.member_id.user_id)
+if x == 1 or x == tags or k == 0 then 
+tags = x + 1 
+t = "اختارتلك مراتك يا نجم يلا بارك الله لكم وبارك عليكم ،😂❤️ \n"
+end 
+x = x + 1 
+if UserInfo.first_name ~= '' then
+t = t.." ["..UserInfo.first_name.."](tg://user?id="..UserInfo.id..")"
+if x == 1 or x == tags or k == 0 then 
+Text = t:gsub('#all,','#all\n')
+LuaTele.sendText(msg.chat_id,msg.id,Text,"md",true)  
+end  
+end
+end
+if text == "تويت بالصوره"  then 
+ban = math.random(1,40); 
+local Text ='لاختيار تويت اخري اتك ع زر بالاسفل' 
+keyboard = {}  
+keyboard.inline_keyboard = {
+{{text = 'تويت  اخري', callback_data = msg.sender_id.user_id..'/tuet'}}, 
+} 
+local msg_id = msg.id/2097152/0.5 
+https.request("https://api.telegram.org/bot"..Token..'/sendphoto?chat_id=' .. msg_chat_id .. '&photo=https://t.me/wffhvv/'..ban..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
+end
 if text == "بوت الزخرفه" or text == "اريد بوت زخرفه" or text == "بوت زخرفه" or text == "بوت الزغرفه" or text == "اريد بوت زغرفه" or text == "بوت زغرفه" then
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = '‹ اضغط هنا ›', url = 't.me/HnHBBoT'},},}}
 return LuaTele.sendText(msg_chat_id,msg_id,'*↯︙اضغط للحصول على بوت الزخرفه*',"md",false, false, false, false, reply_markup) end
