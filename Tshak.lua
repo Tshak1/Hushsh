@@ -13717,10 +13717,10 @@ Redis:sadd(Tshak..'Tshak:Num:User:Pv',msg.sender_id.user_id)
 if not msg.DevelopersAS then
 if not Redis:get(Tshak.."Tshak:Start:Bot") then
 local CmdStart = '↯︙مرحبا انا بوت اسمي ‹ '..(Redis:get(Tshak.."Tshak:Name:Bot") or "تشاك")..' ›\n↯︙اختصاصي التسليه وحماية المجموعات\n↯︙من المخربين والتفليش والسبام والخ\n↯︙فقط قم برفعي ادمن في مجموعتك\n↯︙وارسل كلمة ⇜ ‹ تفعيل ›\n ↯︙ارسل /play للتمتع بأوامر الأعضاء'
-local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = '‹ المطور ›', url = "t.me/"..UserSudo..""},},{{text = '‹ قناة السورس ›', url = 't.me/sourcetshak'},{text = '‹ لتنصيب بوت ›', callback_data ='/alii'},},{{text = '‹ اضفني الى مجموعتك ›', url = 't.me/'..UserBot..'?startgroup=new'},},}}
+local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = '‹ المطور ›', url = "t.me/"..UserSudo..""},},{{text = '‹ قناة السورس ›', url = 't.me/sourcetshak'},{text = '‹ لتنصيب بوت ›', data = msg.sender_id.user_id.. ='/alii'},},{{text = '‹ اضفني الى مجموعتك ›', url = 't.me/'..UserBot..'?startgroup=new'},},}}
 return LuaTele.sendText(msg_chat_id,msg_id,CmdStart,"md",false, false, false, false, reply_markup)
 else
-local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = '‹ المطور ›', url = "t.me/"..UserSudo..""},},{{text = '‹ قناة السورس ›', url = 't.me/sourcetshak'},{text = '‹ لتنصيب بوت ›', url = 't.me/S5llll'},},{{text = '‹ اضفني الى مجموعتك ›', url = 't.me/'..UserBot..'?startgroup=new'},},}}
+local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = '‹ المطور ›', url = "t.me/"..UserSudo..""},},{{text = '‹ قناة السورس ›', url = 't.me/sourcetshak'},{text = '‹ لتنصيب بوت ›', data = msg.sender_id.user_id.. = 't.me/S5llll'},},{{text = '‹ اضفني الى مجموعتك ›', url = 't.me/'..UserBot..'?startgroup=new'},},}}
 return LuaTele.sendText(msg_chat_id,msg_id,Redis:get(Tshak.."Tshak:Start:Bot"),"md",false, false, false, false, reply_markup) end
 else
 local reply_markup = LuaTele.replyMarkup{type = 'keyboard',resize = true,is_personal = true, data = {{{text = '‹  السورس  ›',type = 'text'},{text = '‹  اسم البوت  ›', type = 'text'},},{{text = '‹  المطورين  ›',type = 'text'},{text = '‹  الاحصائيات  ›',type = 'text'},},{{text = '‹  الاذاعة  ›',type = 'text'},{text = '‹  العام  ›', type = 'text'},},{{text = '‹  الاشتراك الاجباري  ›',type = 'text'},{text = '‹  التفعيل والتعطيل  ›',type = 'text'},},{{text = '‹  ردود الخاص  ›',type = 'text'},},}}
