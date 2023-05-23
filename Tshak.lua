@@ -5632,12 +5632,12 @@ keyboard.inline_keyboard = {{{text = '‹ مره اخرى ›', callback_data = 
 local msg_id = msg.id/2097152/0.5
 https.request("https://api.telegram.org/bot"..Token..'/sendVoice?chat_id=' .. msg.chat_id .. '&voice=https://t.me/RapEthan/'..Abs..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
 end
-if text == 'تفعيل التاكات' or text == 'تفعيل التاك التلقائي' then
+if text == 'تفعيل ومضه' or text == 'تفعيل التاك التلقائي' then
 Redis:set(Tshak.."Tshak:Tagat"..msg.chat_id,true) 
 return LuaTele.sendText(msg.chat_id,msg_id,Reply_Status(msg.sender_id.user_id,"*᥀︙تم تفعيل التاك التلقائي *").unLock,"md",true) 
 end
 
-if text == 'تعطيل التاك التلقائي' or text == 'تعطيل التاكات' then
+if text == 'تعطيل ومضه التلقائي' or text == 'تعطيل التاكات' then
 Redis:del(Tshak.."Tshak:Tagat"..msg.chat_id) 
 return LuaTele.sendText(msg.chat_id,msg_id,Reply_Status(msg.sender_id.user_id,"*᥀︙تم تعطيل التاك التلقائي *").unLock,"md",true) 
 end
@@ -5646,7 +5646,9 @@ if not Redis:get(Tshak..":"..msg.chat_id..":tag") then
 local Info = LuaTele.searchChatMembers(msg.chat_id, "*", 200)
 local members = Info.members
 local InfoUser = LuaTele.getUser(members[math.random(#members)].member_id.user_id)
-local texting = {"• تعال لك وين طامس :","• الطف مخلوق حياتي 💖 :","• الـهَيـبة 💖 :","• يـا قمـري ❤️‍🔥 :","• مس يحلو 🌚🤍 :","• تعا مجمعين ناقصه بس انت يروحي 😔💖 :","• وين طامس يحلو 🌚❤️‍🔥 :","• تعا نورنه 😉🤍 :","• احبك يحلو 😂👽 :","• حنسوي العاب تعا 🌚💗 :","• هاا طمست 😉🤍 :",}
+local texting = {"أنت بشر بـي راحتي و تعـبـي .. 💖 :","• الدنيا كُلها تَگودني وأستاحِش .","يصير احضنك وينتهي عمري بحضنك ؟ ","
+" الحَلو چكُليته شفتة حَلو حَبيتة 🤍🥹."," يـ حـلات ايامـي وانـت ويـايـة 🫀🧿","يداده هوَ شويه حَبيب وهوايه سَند .🥺🤍","أوَل مَا شَفت طُولك عَلى البَاب 
+وأول مَا أجَت عيَنك بعيِني  🥺♥️'","بـدونه العُمر يـَذبل ويـسألني تحبيني ؟ 🫂🫀.","• أنت بشر بـي راحتي و تعـبـي ..🫀","ححِب جبيࢪ ݪڪل ݪحضهۃ بينيہَ ۅ بينك 🫀.",}
 tagname = InfoUser.first_name.."ْ"
 tagname = tagname:gsub('"',"")
 tagname = tagname:gsub('"',"")
