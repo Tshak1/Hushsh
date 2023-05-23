@@ -5628,6 +5628,98 @@ local R = Redis:scard(Tshak.."Tshak:List:Rd:Sudo")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = '‹ افتارات بنات›', data = msg.sender_id.user_id..'/Song'},},{{text = '‹ افتارات شباب ›', data = msg.sender_id.user_id..'/voice'},{text = '‹ افتارات انمي ›', data = msg.sender_id.user_id..'/Mp'},},{{text = '‹ افتارات انمي شباب ›', data = msg.sender_id.user_id..'/Memz'},{text = '‹ افتارات انمي بنات ›', data = msg.sender_id.user_id..'/Remix'},},{{text = '‹ افتارات تمبلر ›', data = msg.sender_id.user_id..'/Anime'},{text = '‹ افتارات كيبوب ›', data = msg.sender_id.user_id..'/Photos'},},{{text = '‹ افتارات سينمائيه ›', data = msg.sender_id.user_id..'/Series'},{text = '‹ هيدرات ›', data = msg.sender_id.user_id..'/Movies'},},{{text = '‹ صور تمبلر بنات ›', data = msg.sender_id.user_id..'/animation'},},{{text = '- سورس تشاك .', url = 't.me/Tshaak'},},}}
 return LuaTele.sendText(msg_chat_id, msg_id, "↯︙يمكنك اختيار أحد اوامر التسليه ⇜ ⤈", 'md', false, false, false, false, reply_markup) end
 -- Lar --
+if text and text:match("^انطق (.*)$") then
+Text = text:match("^انطق (.*)$")
+local intk = Text:gsub(" ","-")
+if intk:match("%a") then
+lan = "en"
+else
+lan = "ar"
+end
+msg_id = msg.id/2097152/0.5 
+https.request("https://api.telegram.org/bot"..Token.."/sendaudio?chat_id="..msg.chat_id.."&caption=الكلمة "..URL.escape(lan).."&audio=http://"..URL.escape('translate.google.com/translate_tts?q='..Text..'&tl=ar&client=duncan3dc-speaker').."&reply_to_message_id="..msg_id.."&disable_web_page_preview=true")
+end
+if text == "حظر  قناه" then
+if not msg.Addictive then
+return LuaTele.sendText(msg_chat_id,msg_id,'\n*● هاذا الامر يخص⦗ '..Controller_Num(7)..' ⦘* ',"md",true)  
+end
+Redis:set(Tshak.."BANchannel"..msg.sender_id.user_id,"on") 
+send(msg_chat_id,msg_id,"●  ارسل يوزر او ايدي القناه","md",true)  
+end
+
+if text == "الغاء حظر  قناه" then
+if not msg.Addictive then
+return LuaTele.sendText(msg_chat_id,msg_id,'\n*● هاذا الامر يخص⦗ '..Controller_Num(7)..' ⦘* ',"md",true)  
+end
+Redis:set(Tshak.."UNBANchannel"..msg.sender_id.user_id,"on") 
+send(msg_chat_id,msg_id,"●  ارسل يوزر او ايدي القناه","md",true)  
+end
+if text == "صراحه" or text == "الصراحه" or text == "صارحني" then 
+if Redis:get(Tshak.."Status:Games"..msg.chat_id) then
+local vBandav_Msg = { 
+"صراحه  ›  صوتك حلوة؟",
+"صراحه  ›  التقيت الناس مع وجوهين؟",
+"صراحه  ›  شيء وكنت تحقق اللسان؟",
+"صراحه  ›  أنا شخص ضعيف عندما؟",
+"صراحه  ›  هل ترغب في إظهار حبك ومرفق لشخص أو رؤية هذا الضعف؟",
+"صراحه  ›  يدل على أن الكذب مرات تكون ضرورية شي؟",
+"صراحه  ›  أشعر بالوحدة على الرغم من أنني تحيط بك كثيرا؟",
+"صراحه  ›  كيفية الكشف عن من يكمن عليك؟",
+"صراحه  ›  إذا حاول شخص ما أن يكرهه أن يقترب منك ويهتم بك تعطيه فرصة؟",
+"صراحه  ›  أشجع شيء حلو في حياتك؟",
+"صراحه  ›  طريقة جيدة يقنع حتى لو كانت الفكرة خاطئة توافق؟",
+"صراحه  ›  كيف تتصرف مع من يسيئون فهمك ويأخذ على ذهنه ثم ينتظر أن يرفض؟",
+"صراحه  ›  التغيير العادي عندما يكون الشخص الذي يحبه؟",
+"صراحه  ›  المواقف الصعبة تضعف لك ولا ترفع؟",
+"صراحه  ›  نظرة و يفسد الصداقة؟",
+"صراحه  ›  ‏‏إذا أحد قالك كلام سيء بالغالب وش تكون ردة فعلك؟",
+"صراحه  ›  شخص معك بالحلوه والمُره؟",
+"صراحه  ›  ‏هل تحب إظهار حبك وتعلقك بالشخص أم ترى ذلك ضعف؟",
+"صراحه  ›  تأخذ بكلام اللي ينصحك ولا تسوي اللي تبي؟",
+"صراحه  ›  وش تتمنى الناس تعرف عليك؟",
+"صراحه  ›  ابيع المجرة عشان؟",
+"صراحه  ›  أحيانا احس ان الناس ، كمل؟",
+"صراحه  ›  مع مين ودك تنام اليوم؟",
+"صراحه  ›  صدفة العمر الحلوة هي اني؟",
+"صراحه  ›  الكُره العظيم دايم يجي بعد حُب قوي تتفق؟",
+"صراحه  ›  صفة تحبها في نفسك؟",
+"صراحه  ›  ‏الفقر فقر العقول ليس الجيوب  ، تتفق؟",
+"صراحه  ›  تصلي صلواتك الخمس كلها؟",
+"صراحه  ›  ‏تجامل أحد على راحتك؟",
+"صراحه  ›  اشجع شيء سويتة بحياتك؟",
+"صراحه  ›  وش ناوي تسوي اليوم؟",
+"صراحه  ›  وش شعورك لما تشوف المطر؟",
+"صراحه  ›  غيرتك هاديه ولا تسوي مشاكل؟",
+"صراحه  ›  ما اكثر شي ندمن عليه؟",
+"صراحه  ›  اي الدول تتمنى ان تزورها؟",
+"صراحه  ›  متى اخر مره بكيت؟",
+"صراحه  ›  تقيم حظك ؟ من عشره؟",
+"صراحه  ›  هل تعتقد ان حظك سيئ؟",
+"صراحه  ›  شـخــص تتمنــي الإنتقــام منـــه؟",
+"صراحه  ›  كلمة تود سماعها كل يوم؟",
+"صراحه  ›  **هل تُتقن عملك أم تشعر بالممل؟",
+"صراحه  ›  هل قمت بانتحال أحد الشخصيات لتكذب على من حولك؟",
+"صراحه  ›  متى آخر مرة قمت بعمل مُشكلة كبيرة وتسببت في خسائر؟",
+"صراحه  ›  ما هو اسوأ خبر سمعته بحياتك؟",
+"‏صراحه  › هل جرحت شخص تحبه من قبل ؟",
+"صراحه  ›  ما هي العادة التي تُحب أن تبتعد عنها؟",
+"‏صراحه  › هل تحب عائلتك ام تكرههم؟",
+"‏صراحه  ›  من هو الشخص الذي يأتي في قلبك بعد الله – سبحانه وتعالى- ورسوله الكريم – صلى الله عليه وسلم؟",
+"‏صراحه  ›  هل خجلت من نفسك من قبل؟",
+"‏صراحه  ›  ما هو ا الحلم  الذي لم تستطيع ان تحققه؟",
+"‏صراحه  ›  ما هو الشخص الذي تحلم به كل ليلة؟",
+"‏صراحه  ›  هل تعرضت إلى موقف مُحرج جعلك تكره صاحبهُ؟",
+"‏صراحه  ›  هل قمت بالبكاء أمام من تُحب؟",
+"‏صراحه  ›  ماذا تختار حبيبك أم صديقك؟",
+"‏صراحه  › هل حياتك سعيدة أم حزينة؟",
+"صراحه  ›  ما هي أجمل سنة عشتها بحياتك؟",
+"‏صراحه  ›  ما هو عمرك الحقيقي؟",
+"‏صراحه  ›  ما اكثر شي ندمن عليه؟",
+"صراحه  ›  ما هي أمنياتك المُستقبلية؟‏",
+} 
+LuaTele.sendText(msg_chat_id,msg_id,vBandav_Msg[math.random(#vBandav_Msg)],'md')
+end
+end
 if text == "غنيلي" then
 if not Redis:get(Tshak.."Tshak:Status:distraction1"..msg_chat_id) then return LuaTele.sendText(msg_chat_id,msg_id,"↯︙عذراً امر غنيلي معطل","md",true) end 
 Abs = math.random(4,2824); 
