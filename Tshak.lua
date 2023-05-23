@@ -5590,20 +5590,11 @@ Redis:del(Tshak..'Tshak:'..lock..msg_chat_id)
 end
 LuaTele.sendText(msg_chat_id,msg_id,Reply_Status(msg.sender_id.user_id,"*↯︙تم فتح جميع الاوامر*").unLock,"md",true)  
 return false end
-if text == "غنيلي" then
-if not Redis:get(Tshak.."Tshak:Status:distraction1"..msg_chat_id) then return LuaTele.sendText(msg_chat_id,msg_id,"↯︙عذراً امر غنيلي معطل","md",true) end 
-Abs = math.random(4,2824); 
-local Text ='↯︙تم اختيار المقطع الصوتي لك'
-keyboard = {} 
-keyboard.inline_keyboard = {{{text = '‹ مره اخرى ›', callback_data = msg.sender_id.user_id..'/Song'}},{{text='- سورس تشاك .',url="t.me/sourcetshak"}
-}
-}
-if text == 'تفعيل ومضه تلقائي' or text == 'تفعيل التاك التلقائي' then
+if text == 'تفعيل التاكات' or text == 'تفعيل التاك التلقائي' then
 Redis:set(Tshak.."Tshak:Tagat"..msg.chat_id,true) 
 return LuaTele.sendText(msg.chat_id,msg_id,Reply_Status(msg.sender_id.user_id,"*᥀︙تم تفعيل التاك التلقائي *").unLock,"md",true) 
 end
-
-if text == 'تعطيل ومضه التلقائي' or text == 'تعطيل التاكات' then
+if text == 'تعطيل التاك التلقائي' or text == 'تعطيل التاكات' then
 Redis:del(Tshak.."Tshak:Tagat"..msg.chat_id) 
 return LuaTele.sendText(msg.chat_id,msg_id,Reply_Status(msg.sender_id.user_id,"*᥀︙تم تعطيل التاك التلقائي *").unLock,"md",true) 
 end
@@ -5626,6 +5617,14 @@ Redis:setex(Tshak..":"..msg.chat_id..":tag",30,true)
 LuaTele.sendText(msg.chat_id,0,'*'..texting[math.random(#texting)]..'*'..usr,'md') 
 end
 end
+if text == "غنيلي" then
+if not Redis:get(Tshak.."Tshak:Status:distraction1"..msg_chat_id) then return LuaTele.sendText(msg_chat_id,msg_id,"↯︙عذراً امر غنيلي معطل","md",true) end 
+Abs = math.random(4,2824); 
+local Text ='↯︙تم اختيار المقطع الصوتي لك'
+keyboard = {} 
+keyboard.inline_keyboard = {{{text = '‹ مره اخرى ›', callback_data = msg.sender_id.user_id..'/Song'}},{{text='- سورس تشاك .',url="t.me/sourcetshak"}
+}
+}
 local msg_id = msg.id/2097152/0.5
 https.request("https://api.telegram.org/bot"..Token..'/sendVoice?chat_id=' .. msg.chat_id .. '&voice=https://t.me/TEAMSUL/'..Abs..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) end
 if text == "متحركه" then
