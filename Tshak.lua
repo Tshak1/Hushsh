@@ -5644,7 +5644,7 @@ if not msg.Addictive then
 return LuaTele.sendText(msg_chat_id,msg_id,'\n*● هاذا الامر يخص⦗ '..Controller_Num(7)..' ⦘* ',"md",true)  
 end
 Redis:set(Tshak.."BANchannel"..msg.sender_id.user_id,"on") 
-send(msg_chat_id,msg_id,"●  ارسل يوزر او ايدي القناه","md",true)  
+LuaTele.sendText(msg_chat_id,msg_id,"●  ارسل يوزر او ايدي القناه","md",true)  
 end
 
 if text == "الغاء حظر  قناه" then
@@ -5652,7 +5652,7 @@ if not msg.Addictive then
 return LuaTele.sendText(msg_chat_id,msg_id,'\n*● هاذا الامر يخص⦗ '..Controller_Num(7)..' ⦘* ',"md",true)  
 end
 Redis:set(Tshak.."UNBANchannel"..msg.sender_id.user_id,"on") 
-send(msg_chat_id,msg_id,"●  ارسل يوزر او ايدي القناه","md",true)  
+LuaTele.sendText(msg_chat_id,msg_id,"●  ارسل يوزر او ايدي القناه","md",true)  
 end
 if text == "صراحه" or text == "الصراحه" or text == "صارحني" then 
 if Redis:get(Tshak.."Status:Games"..msg.chat_id) then
