@@ -5720,6 +5720,17 @@ local vBandav_Msg = {
 LuaTele.sendText(msg_chat_id,msg_id,vBandav_Msg[math.random(#vBandav_Msg)],'md')
 end
 end
+if text == ("سؤال وجواب") then 
+if ChannelJoin(msg) == false then
+local Get_Chat = LuaTele.getChat(Redis:get(Tshak..'Tshak:ChanneliD:Join'))
+local NcH = (Redis:get(Tshak.."Tshak:CH:Bot") or Get_Chat.title)
+local NcHlink = (Redis:get(Tshak.."Tshak:CHlink:Bot") or "↯︙عذراً لاتستطيع استخدام البوت !\n↯︙عليك الاشتراك في القناة اولاً :")
+local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = NcH, url = 't.me/'..Redis:get(Tshak..'Tshak:Channel:Join')},},}}
+return LuaTele.sendText(msg.chat_id,msg.id,NcHlink,"md",false, false, false, false, reply_markup) end
+local R = Redis:scard(Tshak.."Tshak:List:Rd:Sudo")
+local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = '‹ اسألني في الدين›', data = msg.sender_id.user_id..'/Song'},},{{text = '‹ اسالني في كره قدم ›', data = msg.sender_id.user_id..'/voice'},{text = '‹ اسالني عن العراق ›', data = msg.sender_id.user_id..'/Mp'},},{{text = '‹  اسالني في التاريخ ›', data = msg.sender_id.user_id..'/Memz'},{text = '‹ اسالني في الحيوانات ›', data = msg.sender_id.user_id..'/Remix'},},{{text = '‹  اسالني في الالعاب  ›', data = msg.sender_id.user_id..'/Anime'},{text = '‹  اسالني عن الدول ›', data = msg.sender_id.user_id..'/Photos'},},{{text = '‹  اسالني في الانمي ›', data = msg.sender_id.user_id..'/Series'},{text = '‹ اسالني في الافلام ›', data = msg.sender_id.user_id..'/Movies'},},{{text = '‹ اسالني عن فرقه BtS ›', data = msg.sender_id.user_id..'/animation'},},{{text = '- سورس تشاك .', url = 't.me/Tshaak'},},}}
+return LuaTele.sendText(msg_chat_id, msg_id, "↯︙يمكنك عزيزي من هنا اختيار ماهي الاسئله التي تريدها .", 'md', false, false, false, false, reply_markup) end
+-- Lar --
 if text == "غنيلي" then
 if not Redis:get(Tshak.."Tshak:Status:distraction1"..msg_chat_id) then return LuaTele.sendText(msg_chat_id,msg_id,"↯︙عذراً امر غنيلي معطل","md",true) end 
 Abs = math.random(4,2824); 
