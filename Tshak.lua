@@ -5590,13 +5590,13 @@ Redis:del(Tshak..'Tshak:'..lock..msg_chat_id)
 end
 LuaTele.sendText(msg_chat_id,msg_id,Reply_Status(msg.sender_id.user_id,"*↯︙تم فتح جميع الاوامر*").unLock,"md",true)  
 return false end
-if text == 'تفعيل التاكات' or text == 'تفعيل التاك التلقائي' then
+if text == 'تفعيل ومضه تلقائي' or text == 'تفعيل ومضه التلقائي' then
 Redis:set(Tshak.."Tshak:Tagat"..msg.chat_id,true) 
-return LuaTele.sendText(msg.chat_id,msg_id,Reply_Status(msg.sender_id.user_id,"*᥀︙تم تفعيل التاك التلقائي *").unLock,"md",true) 
+return LuaTele.sendText(msg.chat_id,msg_id,Reply_Status(msg.sender_id.user_id,"*᥀︙تم تفعيل ومضه تلقائي *").unLock,"md",true) 
 end
-if text == 'تعطيل التاك التلقائي' or text == 'تعطيل التاكات' then
+if text == 'تعطيل ومضه التلقائي' or text == 'تعطيل ومضه تلقائي' then
 Redis:del(Tshak.."Tshak:Tagat"..msg.chat_id) 
-return LuaTele.sendText(msg.chat_id,msg_id,Reply_Status(msg.sender_id.user_id,"*᥀︙تم تعطيل التاك التلقائي *").unLock,"md",true) 
+return LuaTele.sendText(msg.chat_id,msg_id,Reply_Status(msg.sender_id.user_id,"*᥀︙تم تعطيل ومضه تلقائي *").unLock,"md",true) 
 end
 if msg and Redis:get(Tshak.."Tshak:Tagat"..msg.chat_id) then
 if not Redis:get(Tshak..":"..msg.chat_id..":tag") then
@@ -5617,6 +5617,17 @@ Redis:setex(Tshak..":"..msg.chat_id..":tag",30,true)
 LuaTele.sendText(msg.chat_id,0,'*'..texting[math.random(#texting)]..'*'..usr,'md') 
 end
 end
+if text == ("افتارات") then 
+if ChannelJoin(msg) == false then
+local Get_Chat = LuaTele.getChat(Redis:get(Tshak..'Tshak:ChanneliD:Join'))
+local NcH = (Redis:get(Tshak.."Tshak:CH:Bot") or Get_Chat.title)
+local NcHlink = (Redis:get(Tshak.."Tshak:CHlink:Bot") or "↯︙عذراً لاتستطيع استخدام البوت !\n↯︙عليك الاشتراك في القناة اولاً :")
+local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = NcH, url = 't.me/'..Redis:get(Tshak..'Tshak:Channel:Join')},},}}
+return LuaTele.sendText(msg.chat_id,msg.id,NcHlink,"md",false, false, false, false, reply_markup) end
+local R = Redis:scard(Tshak.."Tshak:List:Rd:Sudo")
+local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = '‹ افتارات بنات›', data = msg.sender_id.user_id..'/Song'},},{{text = '‹ افتارات شباب ›', data = msg.sender_id.user_id..'/voice'},{text = '‹ افتارات انمي ›', data = msg.sender_id.user_id..'/Mp'},},{{text = '‹ افتارات انمي شباب ›', data = msg.sender_id.user_id..'/Memz'},{text = '‹ افتارات انمي بنات ›', data = msg.sender_id.user_id..'/Remix'},},{{text = '‹ افتارات تمبلر ›', data = msg.sender_id.user_id..'/Anime'},{text = '‹ افتارات كيبوب ›', data = msg.sender_id.user_id..'/Photos'},},{{text = '‹ افتارات سينمائيه ›', data = msg.sender_id.user_id..'/Series'},{text = '‹ هيدرات ›', data = msg.sender_id.user_id..'/Movies'},},{{text = '‹ صور تمبلر بنات ›', data = msg.sender_id.user_id..'/animation'},},{{text = '- سورس تشاك .', url = 't.me/Tshaak'},},}}
+return LuaTele.sendText(msg_chat_id, msg_id, "↯︙يمكنك اختيار أحد اوامر التسليه ⇜ ⤈", 'md', false, false, false, false, reply_markup) end
+-- Lar --
 if text == "غنيلي" then
 if not Redis:get(Tshak.."Tshak:Status:distraction1"..msg_chat_id) then return LuaTele.sendText(msg_chat_id,msg_id,"↯︙عذراً امر غنيلي معطل","md",true) end 
 Abs = math.random(4,2824); 
