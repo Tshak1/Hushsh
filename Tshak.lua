@@ -5654,6 +5654,81 @@ end
 Redis:set(Tshak.."UNBANchannel"..msg.sender_id.user_id,"on") 
 LuaTele.sendText(msg_chat_id,msg_id,"●  ارسل يوزر او ايدي القناه","md",true)  
 end
+if text == 'معلوماتي' then
+local ban = LuaTele.getUser(msg.sender_id.user_id)
+if ban.first_name then
+news = " "..ban.first_name.." "
+else
+news = " لا يوجد"
+end
+if ban.first_name then
+UserName = ' '..ban.first_name..' '
+else
+UserName = 'لا يوجد'
+end
+if ban.username then
+banusername = '@'..ban.username..''
+else
+banusername = 'لا يوجد'
+end
+local UserId = msg.sender_id.user_id
+local RinkBot = msg.Name_Controller
+local TotalMsg = Redis:get(Tshak..'Num:Message:User'..msg_chat_id..':'..msg.sender_id.user_id) or 0
+local news = '🏷️›ɪᴅ : '..UserId
+local uass = '📇›ɴᴀᴍᴇ : '..UserName
+local banhas = 'ℹ️›ᴜѕᴇ : '..banusername
+local rengk = '⏏️›ѕᴛᴀ : '..RinkBot
+local masha = '💳›ᴍѕɢ : '..TotalMsg
+local BIO = '🌟›ʙɪᴏ : '..getbio(msg.sender_id.user_id)
+local again = 'مرحبا في قائمة معلوماتي 🤍'
+local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {
+{
+{text = uass, url = "https://t.me/"..ban.username..""}, 
+},
+{
+{text = news, data = msg.sender_id.user_id..'/news'}, 
+},
+{
+{text = banhas, data = msg.sender_id.user_id..'/banhas'}, 
+},
+{
+{text = rengk, url = "https://t.me/"..ban.username..""}, 
+},
+{
+{text = masha, url = "https://t.me/"..ban.username..""}, 
+},
+{
+{text = BIO, data = msg.sender_id.user_id..'/BIO'}, 
+},
+}
+}
+return LuaTele.sendText(msg_chat_id, msg_id, again, 'md', false, false, false, false, reply_markup)
+end
+if text == 'انا مين' then
+local ban = LuaTele.getUser(msg.sender_id.user_id)
+if ban.first_name then
+news = " "..ban.first_name.." "
+else
+news = " لا يوجد"
+end
+if ban.first_name then
+UserName = ' '..ban.first_name..' '
+else
+UserName = 'لا يوجد'
+end
+local UseName = ' '..UserName
+local news = 'انت يقلبي 🤍 : '..news
+local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {
+{{text = UseName, url = "https://t.me/"..ban.username..""}, },}}
+return LuaTele.sendText(msg_chat_id, msg_id, news, 'md', false, false, false, false, reply_markup)
+end
+if text == 'رتبتي' then
+local ban = LuaTele.getUser(msg.sender_id.user_id)
+local news = '● رتبتك هي : '..msg.Name_Controller
+local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {
+{{text =news,url = "https://t.me/"..ban.username..""}, },}}
+return LuaTele.sendText(msg_chat_id, msg_id, news, 'md', false, false, false, false, reply_markup)
+end
 if text == "صراحه" or text == "الصراحه" or text == "صارحني" then 
 if Redis:get(Tshak.."Status:Games"..msg.chat_id) then
 local vBandav_Msg = { 
