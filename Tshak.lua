@@ -5701,7 +5701,7 @@ local uass = '📇›ɴᴀᴍᴇ : '..UserName
 local banhas = 'ℹ️›ᴜѕᴇ : '..banusername
 local rengk = '⏏️›ѕᴛᴀ : '..RinkBot
 local masha = '💳›ᴍѕɢ : '..TotalMsg
-local BIO = '🌟›ʙɪᴏ : '..(msg.sender_id.user_id)
+local BIO = '🌟›ʙɪᴏ : ..'..bio
 local again = 'مرحبا في قائمة معلوماتي 🤍'
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {
 {
@@ -5828,14 +5828,45 @@ local R = Redis:scard(Tshak.."Tshak:List:Rd:Sudo")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = '‹ اسألني في الدين›', data = msg.sender_id.user_id..'/Song'},},{{text = '‹ اسالني في كره قدم ›', data = msg.sender_id.user_id..'/voice'},{text = '‹ اسالني عن العراق ›', data = msg.sender_id.user_id..'/Mp'},},{{text = '‹  اسالني في التاريخ ›', data = msg.sender_id.user_id..'/Memz'},{text = '‹ اسالني في الحيوانات ›', data = msg.sender_id.user_id..'/Remix'},},{{text = '‹  اسالني في الالعاب  ›', data = msg.sender_id.user_id..'/Anime'},{text = '‹  اسالني عن الدول ›', data = msg.sender_id.user_id..'/Photos'},},{{text = '‹  اسالني في الانمي ›', data = msg.sender_id.user_id..'/Series'},{text = '‹ اسالني في الافلام ›', data = msg.sender_id.user_id..'/Movies'},},{{text = '‹ اسالني عن فرقه BtS ›', data = msg.sender_id.user_id..'/animation'},},{{text = '- سورس تشاك .', url = 't.me/Tshaak'},},}}
 return LuaTele.sendText(msg_chat_id, msg_id, "↯︙يمكنك عزيزي من هنا اختيار ماهي الاسئله التي تريدها .", 'md', false, false, false, false, reply_markup) end
 -- Lar --
+if text == 'رابط الحذف' or text == 'رابط حذف' or text == 'رابط حذف انستا' then
+Text =[[
+رابط الحذف في جميع مواقع التواصل فكر قبل لا تتسرع وتروح
+]]
+keyboard = {} 
+keyboard.inline_keyboard = {
+{{text = ' ● رابط حذف تلي كرام ●.',url="https://my.telegram.org/auth?to=delete"}},
+{{text = ' ● رابط حذف الانستا ●.',url="https://www.instagram.com/accounts/login/?next=/accounts/remove/request/permanent/"}},
+{{text = '● رابط حذف فيسبوك ● .',url="https://www.facebook.com/help/deleteaccount"}},
+{{text = ' ● رابط حذف سناب شات ● .',url="https://accounts.snapchat.com/accounts/login?continue=https%3A%2F%2Faccounts.snapchat.com%2Faccounts%2Fdeleteaccount"}},
+}
+local msg_id = msg.id_/2097152/0.5
+https.request("https://api.telegram.org/bot"..token..'/sendMessage?chat_id=' .. msg.chat_id_ .. '&text=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
+return false
+end
+if text == "انشاء رابط خاص" then
+if not msg.Admin then
+return send(msg_chat_id,msg_id,'\n*⌯ هذا الامر يخص { '..Controller_Num(7)..' }* ',"md",true)  
+end
+local Get_Chat = bot.getChat(msg_chat_id)
+  local LinkGroup = bot.generateChatInviteLink(msg_chat_id,'rino',tonumber(msg.date+864000),nil,true)
+  if LinkGroup.code == 3 then
+  return send(msg_chat_id,msg_id,"⌯ لا استطيع جلب الرابط بسبب ليس لدي صلاحيه دعوه مستخدمين من خلال الرابط ","md",true)
+  end
+  local reply_markup = bot.replyMarkup{type = 'inline',data = {
+  {{text = Get_Chat.title, url = LinkGroup.invite_link},},}}
+  return send(msg_chat_id, msg_id, "⌯ Link Group : \n["..LinkGroup.invite_link.. "]", 'md', true, false, false, false, reply_markup)
+  end
 if text == "غنيلي" then
 if not Redis:get(Tshak.."Tshak:Status:distraction1"..msg_chat_id) then return LuaTele.sendText(msg_chat_id,msg_id,"↯︙عذراً امر غنيلي معطل","md",true) end 
-Abs = math.random(4,2824); 
-local Text ='↯︙تم اختيار المقطع الصوتي لك'
+Abs = math.random(2,140); 
+local Text ='*↯‍︙تم اختيار اغنيه لك*'
 keyboard = {} 
-keyboard.inline_keyboard = {{{text = '‹ مره اخرى ›', callback_data = msg.sender_id.user_id..'/Song'}},{{text='- سورس تشاك .',url="t.me/sourcetshak"}
+keyboard.inline_keyboard = {{{text = '‹ مره اخرى ›', callback_data = msg.sender_id.user_id..'/Song'}},{{text='- سورس تشاك .',url="t.me/Tshaak"}
 }
 }
+local msg_id = msg.id/2097152/0.5
+https.request("https://api.telegram.org/bot"..Token..'/sendVoice?chat_id=' .. msg.chat_id .. '&voice=https://t.me/TEAMSUL/'..Abs..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
+end
 local msg_id = msg.id/2097152/0.5
 https.request("https://api.telegram.org/bot"..Token..'/sendVoice?chat_id=' .. msg.chat_id .. '&voice=https://t.me/TEAMSUL/'..Abs..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) end
 if text == "متحركه" then
