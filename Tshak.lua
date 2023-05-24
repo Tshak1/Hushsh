@@ -5776,7 +5776,7 @@ https.request("https://api.telegram.org/bot"..Token..'/sendPhoto?chat_id=' .. ms
 end
 if text == "انشاء رابط خاص" then
 if not msg.Admin then
-return (msg_chat_id,msg_id,'\n*⌯ هذا الامر يخص { '..Controller_Num(7)..' }* ',"md",true)  
+return msg_chat_id,msg_id,'\n*⌯ هذا الامر يخص { '..Controller_Num(7)..' }* ',"md",true)  
 end
 local Get_Chat = bot.getChat(msg_chat_id)
   local LinkGroup = bot.generateChatInviteLink(msg_chat_id,'rino',tonumber(msg.date+864000),nil,true)
