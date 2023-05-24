@@ -5658,7 +5658,7 @@ if text == "جمالي" or text == 'نسبه جمالي' then
 if Redis:get(Tshak.."mybuti"..msg_chat_id) == "off" then
 send(msg_chat_id,msg_id,'*☆︙نسبه جمالي معطله*',"md",true) 
 else
-local photo = bot.getUserProfilePhotos(msg.sender_id.user_id)
+local photo = getUserProfilePhotos(msg.sender_id.user_id)
 if msg.Dev then
 if photo.total_count > 0 then
 return bot.sendPhoto(msg.chat_id, msg.id, photo.photos[1].sizes[#photo.photos[1].sizes].photo.remote.id,"*نسبه جمالك هي 900% عشان مطور ولازم اطبله😹♥*", "md")
@@ -5701,7 +5701,7 @@ local uass = '📇›ɴᴀᴍᴇ : '..UserName
 local banhas = 'ℹ️›ᴜѕᴇ : '..banusername
 local rengk = '⏏️›ѕᴛᴀ : '..RinkBot
 local masha = '💳›ᴍѕɢ : '..TotalMsg
-local BIO = '🌟›ʙɪᴏ : '..getbio(msg.sender_id.user_id)
+local BIO = '🌟›ʙɪᴏ : '..(msg.sender_id.user_id)
 local again = 'مرحبا في قائمة معلوماتي 🤍'
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {
 {
