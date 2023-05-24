@@ -5775,7 +5775,6 @@ local msg_id = msg.id/2097152/0.5
 https.request("https://api.telegram.org/bot"..Token..'/sendPhoto?chat_id=' .. msg.chat_id .. '&photo=https://t.me/tshakk/7&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
 end
 if text == "انشاء رابط خاص" then
-if not msg.Admin then
 return msg_chat_id,msg_id,'\n*⌯ هذا الامر يخص { '..Controller_Num(7)..' }* ',"md",true)  
 end
 local Get_Chat = bot.getChat(msg_chat_id)
