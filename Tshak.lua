@@ -5774,18 +5774,6 @@ keyboard.inline_keyboard = {
 local msg_id = msg.id/2097152/0.5
 https.request("https://api.telegram.org/bot"..Token..'/sendPhoto?chat_id=' .. msg.chat_id .. '&photo=https://t.me/tshakk/7&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
 end
-if text == "انشاء رابط خاص" then
-return msg_chat_id,msg_id,'\n*⌯ هذا الامر يخص { '..Controller_Num(7)..' }* ',"md",true)  
-end
-local Get_Chat = bot.getChat(msg_chat_id)
-  local LinkGroup = bot.generateChatInviteLink(msg_chat_id,'rino',tonumber(msg.date+864000),nil,true)
-  if LinkGroup.code == 3 then
-  return send(msg_chat_id,msg_id,"⌯ لا استطيع جلب الرابط بسبب ليس لدي صلاحيه دعوه مستخدمين من خلال الرابط ","md",true)
-  end
-  local reply_markup = bot.replyMarkup{type = 'inline',data = {
-  {{text = Get_Chat.title, url = LinkGroup.invite_link},},}}
-  return send(msg_chat_id, msg_id, "⌯ Link Group : \n["..LinkGroup.invite_link.. "]", 'md', true, false, false, false, reply_markup)
-  end
 if text == "غنيلي" then
 if not Redis:get(Tshak.."Tshak:Status:distraction1"..msg_chat_id) then return LuaTele.sendText(msg_chat_id,msg_id,"↯︙عذراً امر غنيلي معطل","md",true) end 
 Abs = math.random(2,140); 
