@@ -5701,7 +5701,7 @@ local uass = '📇›ɴᴀᴍᴇ : '..UserName
 local banhas = 'ℹ️›ᴜѕᴇ : '..banusername
 local rengk = '⏏️›ѕᴛᴀ : '..RinkBot
 local masha = '💳›ᴍѕɢ : '..TotalMsg
-local BIO = '🌟›ʙɪᴏ : ..'..
+local BIO = '🌟›ʙɪᴏ : ..'..(msg.sender_id.user_id)
 local again = 'مرحبا في قائمة معلوماتي 🤍'
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {
 {
