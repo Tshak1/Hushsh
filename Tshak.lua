@@ -13818,7 +13818,7 @@ return LuaTele.sendText(msg_chat_id,msg_id,[[*
 ↯︙تفعيل الايدي بالصوره - تفع .
 ↯︙تعطيل الايدي بالصوره - تعط .
 *]],"md") end
-end -- GroupBot
+-- GroupBot
 if chat_type(msg.chat_id) == "UserBot" then 
 if text == '‹ تحديث السورس ›' then
 if not msg.DevelopersAS then 
