@@ -5654,21 +5654,7 @@ end
 Redis:set(Tshak.."UNBANchannel"..msg.sender_id.user_id,"on") 
 LuaTele.sendText(msg_chat_id,msg_id,"●  ارسل يوزر او ايدي القناه","md",true)  
 end
-if text == "صورتي" then
-if Redis:get(Tshak.."Tshak:Status:photo"..msg.chat_id) then
-local photo = LuaTele.getUserProfilePhotos(msg.sender_id.user_id)
-if photo.total_count > 0 then 
-keyboard = {} 
-keyboard.inline_keyboard = {
-{
-{text = 'صورتك التاليه', callback_data=msg.sender_id.user_id.."/sorty2"},
-},
-}
-return LuaTele.sendPhoto(msg.chat_id, msg.id, photo.photos[1].sizes[#photo.photos[1].sizes].photo.remote.id,"*↯︙عدد صورك هو "..photo.total_count.." صوره*", "md")
-else
-return LuaTele.sendText(msg_chat_id,msg_id,'*↯︙لا توجد صوره في حسابك*',"md",true) 
-end
-else
+
 return LuaTele.sendText(msg_chat_id,msg_id,'*↯︙امر صورتي معطل*',"md",true)  end end
 if text == 'معلومات' then
 local ban = LuaTele.getUser(msg.sender_id.user_id)
@@ -5738,76 +5724,7 @@ local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {
 {{text = UseName, url = "https://t.me/"..ban.username..""}, },}}
 return LuaTele.sendText(msg_chat_id, msg_id, news, 'md', false, false, false, false, reply_markup)
 end
-if text == 'رتبتي' then
-local ban = LuaTele.getUser(msg.sender_id.user_id)
-local news = '● رتبتك هي : '..msg.Name_Controller
-local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {
-{{text =news,url = "https://t.me/"..ban.username..""}, },}}
-return LuaTele.sendText(msg_chat_id, msg_id, news, 'md', false, false, false, false, reply_markup)
-end
-if text == ("سؤال وجواب") then 
-if ChannelJoin(msg) == false then
-local Get_Chat = LuaTele.getChat(Redis:get(Tshak..'Tshak:ChanneliD:Join'))
-local NcH = (Redis:get(Tshak.."Tshak:CH:Bot") or Get_Chat.title)
-local NcHlink = (Redis:get(Tshak.."Tshak:CHlink:Bot") or "↯︙عذراً لاتستطيع استخدام البوت !\n↯︙عليك الاشتراك في القناة اولاً :")
-local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = NcH, url = 't.me/'..Redis:get(Tshak..'Tshak:Channel:Join')},},}}
-return LuaTele.sendText(msg.chat_id,msg.id,NcHlink,"md",false, false, false, false, reply_markup) end
-local R = Redis:scard(Tshak.."Tshak:List:Rd:Sudo")
-local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = '‹ اسألني في الدين›', data = msg.sender_id.user_id..'/Song'},},{{text = '‹ اسالني في كره قدم ›', data = msg.sender_id.user_id..'/voice'},{text = '‹ اسالني عن العراق ›', data = msg.sender_id.user_id..'/Mp'},},{{text = '‹  اسالني في التاريخ ›', data = msg.sender_id.user_id..'/Memz'},{text = '‹ اسالني في الحيوانات ›', data = msg.sender_id.user_id..'/Remix'},},{{text = '‹  اسالني في الالعاب  ›', data = msg.sender_id.user_id..'/Anime'},{text = '‹  اسالني عن الدول ›', data = msg.sender_id.user_id..'/Photos'},},{{text = '‹  اسالني في الانمي ›', data = msg.sender_id.user_id..'/Series'},{text = '‹ اسالني في الافلام ›', data = msg.sender_id.user_id..'/Movies'},},{{text = '‹ اسالني عن فرقه BtS ›', data = msg.sender_id.user_id..'/animation'},},{{text = '- سورس تشاك .', url = 't.me/Tshaak'},},}}
-return LuaTele.sendText(msg_chat_id, msg_id, "↯︙يمكنك عزيزي من هنا اختيار ماهي الاسئله التي تريدها .", 'md', false, false, false, false, reply_markup) end
--- Lar --
 if text == "افتارات بنات" then
-if not Redis:get(Tshak.."Tshak:Status:distraction5"..msg_chat_id) then return LuaTele.sendText(msg_chat_id,msg_id,"↯︙عذراً امر صوره معطل","md",true) end 
-Abs = math.random(2,140);
-local Text =''
-local MsgId = msg.id/2097152/0.5
-local MSGID = string.gsub(MsgId,'.0','')
-keyboard = {}  
-keyboard.inline_keyboard = {{{text = '✯ افتار آخر ✯',callback_data = msg.sender_id.user_id..'/aftgir'}}} 
-local msg_id = msg.id/2097152/0.5 
-https.request("https://api.telegram.org/bot"..Token..'/sendphoto?chat_id=' .. msg.chat_id .. '&photo=https://t.me/QXXX_4/'..Abs..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..MsgId.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
-if Text and Text:match('(%d+)/aftgir') then
-local UserId = Text:match('(%d+)/aftgir')
-if tonumber(data.sender_user_id) == tonumber(UserId) then
-Abs = math.random(2,140);
-local Text =''
-keyboard = {}
-keyboard.inline_keyboard = {
-{
-{text = '✯ افتار آخر ✯', callback_data =data.sender_user_id..'/aftgir'}, 
-},
-}
-https.request("https://api.telegram.org/bot"..Token..'/sendphoto?chat_id=' .. chat_id .. '&photo=https://t.me/QXXX_4/'..Abs..'&caption=' .. URL.escape(Text).."&reply_to_message_id=0&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
-bot.deleteMessages(chat_id,{[1]= msg_id})
-end
-end
-if (text == "انمي" or text == "↫ انمي ⌯") then
-Abs = math.random(3,1002); 
-local UserId ='*⌯︙تم اختيار صورة الانمي لك*'
-keyboard = {}  
-keyboard.inline_keyboard = {{{text="• مره اخرى •",callback_data="/anime:"..msg.sender_id.user_id}},{{text='• سوࢪس الحلفي •',url="t.me/iiNzzz"}}} 
-local msg_id = msg.id/2097152/0.5 
-https.request("https://api.telegram.org/bot"..Token..'/sendphoto?chat_id=' .. msg.chat_id .. '&photo=https://t.me/Animesalhlafe/'..Tuofe..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
-end
-if Text and Text:match('/anime:'..tonumber(data.sender_user_id)..'(.*)') then
-local Text = Text:match('/anime:'..tonumber(data.sender_user_id)..'(.*)')
-Abs = math.random(3,1002); 
-local Text ='*⌯︙تم اختيار صورة الانمي لك*'
-keyboard = {}  
-keyboard.inline_keyboard = {{{text="• مره اخرى •",callback_data="/anime:"..data.sender_user_id}},{{text="• سوࢪس الحلفي •",url="t.me/iiNzzz"}}} 
-https.request("https://api.telegram.org/bot"..Token..'/sendphoto?chat_id=' .. data.chat_id .. '&photo=https://t.me/Animesalhlafe/'..Tuofe..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..data.message_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
-end
-if text == "افتار رسم" or text == "افتارات رسم" or text == "رسم" then 
-Abs = math.random(3,102);
-local Text =''
-local MsgId = msg.id/2097152/0.5
-local MSGID = string.gsub(MsgId,'.0','')
-keyboard = {}  
-keyboard.inline_keyboard = {{{text = '‹ مره اخرى ›', callback_data = msg.sender_id.user_id..'/Soll'}},{{text='- سورس تشاك .',url="t.me/Tshaak"}}}
-local msg_id = msg.id/2097152/0.5 
-https.request("https://api.telegram.org/bot"..Token..'/sendphoto?chat_id=' .. msg.chat_id .. '&photo=https://t.me/sourseselv/'..Abs..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
-end 
-if text == "صوره" or text == "افتار" then
 if not redis:get(bot_id.."trfeh"..msg.chat_id) then
 return bot.sendText(msg.chat_id,msg.id," ✯ الترفيه معطل من قبل المشرفين","md",true)
 end
@@ -5816,9 +5733,16 @@ local Text =''
 local MsgId = msg.id/2097152/0.5
 local MSGID = string.gsub(MsgId,'.0','')
 keyboard = {}  
-keyboard.inline_keyboard = {{{text = '✯ افتار آخر ✯',callback_data = msg.sender_id.user_id..'/aftar'}}} 
+keyboard.inline_keyboard = {{{text = '✯ افتار آخر ✯',callback_data = msg.sender_id.user_id..'/aftgir'}}} 
 local msg_id = msg.id/2097152/0.5 
-https.request("https://api.telegram.org/bot"..Token..'/sendphoto?chat_id=' .. msg.chat_id .. '&photo=https://t.me/nyx441/'..Abs..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..MsgId.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
+https.request("https://api.telegram.org/bot"..Token..'/sendphoto?chat_id=' .. msg.chat_id .. '&photo=https://t.me/QXXX_4/'..Abs..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..MsgId.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
+end
+if text == 'رتبتي' then
+local ban = LuaTele.getUser(msg.sender_id.user_id)
+local news = '● رتبتك هي : '..msg.Name_Controller
+local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {
+{{text =news,url = "https://t.me/"..ban.username..""}, },}}
+return LuaTele.sendText(msg_chat_id, msg_id, news, 'md', false, false, false, false, reply_markup)
 end
 if text == "غنيلي" then
 if not Redis:get(Tshak.."Tshak:Status:distraction1"..msg_chat_id) then return LuaTele.sendText(msg_chat_id,msg_id,"↯︙عذراً امر غنيلي معطل","md",true) end 
