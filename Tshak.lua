@@ -5762,19 +5762,18 @@ local Text =''
 local MsgId = msg.id/2097152/0.5
 local MSGID = string.gsub(MsgId,'.0','')
 keyboard = {}  
-keyboard.inline_keyboard = {{{text = '𝐇𝐒𝐎‌ 𝑺𝑶𝑼𝑹𝑪𝑬 ™®',url="t.me/TeamHso"}}} 
-  {{{text = '- مره اخرى ',callback_data = msg.sender_id.user_id..'/Son'}}}
+keyboard.inline_keyboard = {{{text = '‹ مره اخرى ›', callback_data = msg.sender_id.user_id..'/Soll'}},{{text='- سورس تشاك .',url="t.me/Tshaak"}}}
 local msg_id = msg.id/2097152/0.5 
 https.request("https://api.telegram.org/bot"..Token..'/sendphoto?chat_id=' .. msg.chat_id .. '&photo=https://t.me/sourseselv/'..Abs..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
 end 
-elseif Text and Text:match('(%d+)/Son') then
-local UserId = Text:match('(%d+)/Son')
+elseif Text and Text:match('(%d+)/Soll') then
+local UserId = Text:match('(%d+)/Soll')
 if tonumber(IdUser) == tonumber(UserId) then
 if not Redis:get(Tshak.."Tshak:Status:distraction9"..data.chat_id) then return LuaTele.answerCallbackQuery(data.id,"↯︙عذراً امر صوره معطل",true) end 
 Abs = math.random(4,1171); 
 local Text ='↯︙تم اختيار الصوره لك'
 keyboard = {} 
-keyboard.inline_keyboard = {{{text = '‹ مره اخرى ›', callback_data = IdUser..'/'.. 'Photos'}},{{text='- سورس تشاك .',url="t.me/Tshaak"}}}
+keyboard.inline_keyboard = {{{text = '‹ مره اخرى ›', callback_data = msg.sender_id.user_id..'/Soll'}},{{text='- سورس تشاك .',url="t.me/Tshaak"}}}
 local msg_id = Msg_id/2097152/0.5
  https.request("https://api.telegram.org/bot"..Token..'/sendphoto?chat_id=' .. ChatId .. '&photo=https://t.me/PhotosDavid/'..Abs..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_prsjeview=true&reply_markup="..JSON.encode(keyboard)) end
 if text == "افتارات بنات" then
