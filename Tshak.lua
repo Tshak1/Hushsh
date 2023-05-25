@@ -5757,9 +5757,7 @@ local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = '‹ �
 return LuaTele.sendText(msg_chat_id, msg_id, "↯︙يمكنك عزيزي من هنا اختيار ماهي الاسئله التي تريدها .", 'md', false, false, false, false, reply_markup) end
 -- Lar --
 if text == "افتارات بنات" then
-if not redis:get(bot_id.."trfeh"..msg.chat_id) then
-return bot.sendText(msg.chat_id,msg.id," ✯ الترفيه معطل من قبل المشرفين","md",true)
-end
+if not Redis:get(Tshak.."Tshak:Status:distraction5"..msg_chat_id) then return LuaTele.sendText(msg_chat_id,msg_id,"↯︙عذراً امر صوره معطل","md",true) end 
 Abs = math.random(2,140);
 local Text =''
 local MsgId = msg.id/2097152/0.5
@@ -5809,34 +5807,7 @@ keyboard.inline_keyboard = {{{text = '‹ مره اخرى ›', callback_data = 
 local msg_id = msg.id/2097152/0.5 
 https.request("https://api.telegram.org/bot"..Token..'/sendphoto?chat_id=' .. msg.chat_id .. '&photo=https://t.me/sourseselv/'..Abs..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
 end 
-if Text and Text:match('(%d+)/Soll') then
-local UserId = Text:match('(%d+)/Soll')
-if tonumber(IdUser) == tonumber(UserId) then
-local ban = LuaTele.getUser(IdUser)
-if ban.id then
-if ban.first_name then
-banusername = ' '..ban.first_name..''
-else
-banusername = 'لا يوجد'
-end
-au ={
-type = "photo",
-media = "https://t.me/apqiy/109",
-caption = "هو الكلب ده اللي موتها يجماعه😂👇\n[".. ban.first_name.."](tg://user?id="..ban.id..")\n",
-parse_mode = "Markdown"                                                                                                                                                               
-}     
-keyboard = {} 
-keyboard.inline_keyboard = {
-{
-{text =banusername,url = "https://t.me/"..ban.username..""}, 
-},
-}
-local ban = Msg_id/2097152/0.5
-https.request("http://api.telegram.org/bot"..Token.."/editmessagemedia?chat_id="..ChatId.."&message_id="..ban.."&media="..JSON.encode(au).."&reply_markup="..JSON.encode(keyboard))
-end
-end 
-end
-if text == "افتارات بنات" then
+if text == "صوره" or text == "افتار" then
 if not redis:get(bot_id.."trfeh"..msg.chat_id) then
 return bot.sendText(msg.chat_id,msg.id," ✯ الترفيه معطل من قبل المشرفين","md",true)
 end
@@ -5845,9 +5816,9 @@ local Text =''
 local MsgId = msg.id/2097152/0.5
 local MSGID = string.gsub(MsgId,'.0','')
 keyboard = {}  
-keyboard.inline_keyboard = {{{text = '✯ افتار آخر ✯',callback_data = msg.sender_id.user_id..'/aftgir'}}} 
+keyboard.inline_keyboard = {{{text = '✯ افتار آخر ✯',callback_data = msg.sender_id.user_id..'/aftar'}}} 
 local msg_id = msg.id/2097152/0.5 
-https.request("https://api.telegram.org/bot"..Token..'/sendphoto?chat_id=' .. msg.chat_id .. '&photo=https://t.me/Animesalhlafe/'..Abs..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..MsgId.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
+https.request("https://api.telegram.org/bot"..Token..'/sendphoto?chat_id=' .. msg.chat_id .. '&photo=https://t.me/nyx441/'..Abs..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..MsgId.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
 end
 if text == "غنيلي" then
 if not Redis:get(Tshak.."Tshak:Status:distraction1"..msg_chat_id) then return LuaTele.sendText(msg_chat_id,msg_id,"↯︙عذراً امر غنيلي معطل","md",true) end 
