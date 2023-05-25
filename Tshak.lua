@@ -5724,19 +5724,6 @@ local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {
 {{text = UseName, url = "https://t.me/"..ban.username..""}, },}}
 return LuaTele.sendText(msg_chat_id, msg_id, news, 'md', false, false, false, false, reply_markup)
 end
-if text == "افتارات بنات" then
-if not redis:get(bot_id.."trfeh"..msg.chat_id) then
-return bot.sendText(msg.chat_id,msg.id," ✯ الترفيه معطل من قبل المشرفين","md",true)
-end
-Abs = math.random(2,140);
-local Text =''
-local MsgId = msg.id/2097152/0.5
-local MSGID = string.gsub(MsgId,'.0','')
-keyboard = {}  
-keyboard.inline_keyboard = {{{text = '✯ افتار آخر ✯',callback_data = msg.sender_id.user_id..'/aftgir'}}} 
-local msg_id = msg.id/2097152/0.5 
-https.request("https://api.telegram.org/bot"..Token..'/sendphoto?chat_id=' .. msg.chat_id .. '&photo=https://t.me/QXXX_4/'..Abs..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..MsgId.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
-end
 if text == 'رتبتي' then
 local ban = LuaTele.getUser(msg.sender_id.user_id)
 local news = '● رتبتك هي : '..msg.Name_Controller
