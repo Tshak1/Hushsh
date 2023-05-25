@@ -5625,7 +5625,7 @@ local NcHlink = (Redis:get(Tshak.."Tshak:CHlink:Bot") or "↯︙عذراً لا�
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = NcH, url = 't.me/'..Redis:get(Tshak..'Tshak:Channel:Join')},},}}
 return LuaTele.sendText(msg.chat_id,msg.id,NcHlink,"md",false, false, false, false, reply_markup) end
 local R = Redis:scard(Tshak.."Tshak:List:Rd:Sudo")
-local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = '‹ افتارات بنات›', data = msg.sender_id.user_id..'/xxxx'},},{{text = '‹ افتارات شباب ›', data = msg.sender_id.user_id..'/voice'},{text = '‹ افتارات انمي ›', data = msg.sender_id.user_id..'/Mp'},},{{text = '‹ افتارات انمي شباب ›', data = msg.sender_id.user_id..'/Memz'},{text = '‹ افتارات انمي بنات ›', data = msg.sender_id.user_id..'/Remix'},},{{text = '‹ افتارات تمبلر ›', data = msg.sender_id.user_id..'/Anime'},{text = '‹ افتارات كيبوب ›', data = msg.sender_id.user_id..'/Photos'},},{{text = '‹ افتارات سينمائيه ›', data = msg.sender_id.user_id..'/Series'},{text = '‹ هيدرات ›', data = msg.sender_id.user_id..'/Movies'},},{{text = '‹ صور تمبلر بنات ›', data = msg.sender_id.user_id..'/animation'},},{{text = '- سورس تشاك .', url = 't.me/Tshaak'},},}}
+local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = '‹ افتارات بنات›', data = msg.sender_id.user_id..'/phot'},},{{text = '‹ افتارات شباب ›', data = msg.sender_id.user_id..'/voice'},{text = '‹ افتارات انمي ›', data = msg.sender_id.user_id..'/Mp'},},{{text = '‹ افتارات انمي شباب ›', data = msg.sender_id.user_id..'/Memz'},{text = '‹ افتارات انمي بنات ›', data = msg.sender_id.user_id..'/Remix'},},{{text = '‹ افتارات تمبلر ›', data = msg.sender_id.user_id..'/Anime'},{text = '‹ افتارات كيبوب ›', data = msg.sender_id.user_id..'/Photos'},},{{text = '‹ افتارات سينمائيه ›', data = msg.sender_id.user_id..'/Series'},{text = '‹ هيدرات ›', data = msg.sender_id.user_id..'/Movies'},},{{text = '‹ صور تمبلر بنات ›', data = msg.sender_id.user_id..'/animation'},},{{text = '- سورس تشاك .', url = 't.me/Tshaak'},},}}
 return LuaTele.sendText(msg_chat_id, msg_id, "↯︙يمكنك اختيار أحد اوامر التسليه ⇜ ⤈", 'md', false, false, false, false, reply_markup) end
 -- Lar --
 if text and text:match("^انطق (.*)$") then
@@ -5756,26 +5756,16 @@ local R = Redis:scard(Tshak.."Tshak:List:Rd:Sudo")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = '‹ اسألني في الدين›', data = msg.sender_id.user_id..'/Song'},},{{text = '‹ اسالني في كره قدم ›', data = msg.sender_id.user_id..'/voice'},{text = '‹ اسالني عن العراق ›', data = msg.sender_id.user_id..'/Mp'},},{{text = '‹  اسالني في التاريخ ›', data = msg.sender_id.user_id..'/Memz'},{text = '‹ اسالني في الحيوانات ›', data = msg.sender_id.user_id..'/Remix'},},{{text = '‹  اسالني في الالعاب  ›', data = msg.sender_id.user_id..'/Anime'},{text = '‹  اسالني عن الدول ›', data = msg.sender_id.user_id..'/Photos'},},{{text = '‹  اسالني في الانمي ›', data = msg.sender_id.user_id..'/Series'},{text = '‹ اسالني في الافلام ›', data = msg.sender_id.user_id..'/Movies'},},{{text = '‹ اسالني عن فرقه BtS ›', data = msg.sender_id.user_id..'/animation'},},{{text = '- سورس تشاك .', url = 't.me/Tshaak'},},}}
 return LuaTele.sendText(msg_chat_id, msg_id, "↯︙يمكنك عزيزي من هنا اختيار ماهي الاسئله التي تريدها .", 'md', false, false, false, false, reply_markup) end
 -- Lar --
-if Text and Text:match('(%d+)/xxxx') then
-local UserId = Text:match('(%d+)/xxxx')
+elseif Text and Text:match('(%d+)/Phot') then
+local UserId = Text:match('(%d+)/Phot')
 if tonumber(IdUser) == tonumber(UserId) then
-ban = math.random(1,40); 
-au ={
-type = "photo",
-media = "https://t.me/wffhvv/"..ban.."",
-caption = "لاختيار تويت اخري اتك ع زر بالاسف\n",
-parse_mode = "Markdown"                                                                                                                                                               
-}     
+if not Redis:get(Tshak.."Tshak:Status:distraction9"..data.chat_id) then return LuaTele.answerCallbackQuery(data.id,"↯︙عذراً امر صوره معطل",true) end 
+Abs = math.random(4,1171); 
+local Text ='↯︙تم اختيار الصوره لك'
 keyboard = {} 
-keyboard.inline_keyboard = {
-{
-{text = ' افتار اخر -', callback_data=IdUser.."/xxxx"},
-},
-}
-local ban = Msg_id/2097152/0.5
-https.request("http://api.telegram.org/bot"..Token.."/editmessagemedia?chat_id="..ChatId.."&message_id="..ban.."&media="..JSON.encode(au).."&reply_markup="..JSON.encode(keyboard))
-end 
-end
+keyboard.inline_keyboard = {{{text = '‹ مره اخرى ›', callback_data = IdUser..'/'.. 'Photos'}},{{text='- سورس تشاك .',url="t.me/Tshaak"}}}
+local msg_id = Msg_id/2097152/0.5
+ https.request("https://api.telegram.org/bot"..Token..'/sendphoto?chat_id=' .. ChatId .. '&photo=https://t.me/hsokepop/'..Abs..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_prsjeview=true&reply_markup="..JSON.encode(keyboard)) end
 if text == 'رابط الحذف' or text == 'روابط الحذف' or text == 'بوت الحذف' or text == 'بوت حذف' then
 Text =[[
 ● Hello pro buttons at the bottom to delete social media accounts .
