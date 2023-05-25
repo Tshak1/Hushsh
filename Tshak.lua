@@ -5756,6 +5756,22 @@ local R = Redis:scard(Tshak.."Tshak:List:Rd:Sudo")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = '‹ اسألني في الدين›', data = msg.sender_id.user_id..'/Song'},},{{text = '‹ اسالني في كره قدم ›', data = msg.sender_id.user_id..'/voice'},{text = '‹ اسالني عن العراق ›', data = msg.sender_id.user_id..'/Mp'},},{{text = '‹  اسالني في التاريخ ›', data = msg.sender_id.user_id..'/Memz'},{text = '‹ اسالني في الحيوانات ›', data = msg.sender_id.user_id..'/Remix'},},{{text = '‹  اسالني في الالعاب  ›', data = msg.sender_id.user_id..'/Anime'},{text = '‹  اسالني عن الدول ›', data = msg.sender_id.user_id..'/Photos'},},{{text = '‹  اسالني في الانمي ›', data = msg.sender_id.user_id..'/Series'},{text = '‹ اسالني في الافلام ›', data = msg.sender_id.user_id..'/Movies'},},{{text = '‹ اسالني عن فرقه BtS ›', data = msg.sender_id.user_id..'/animation'},},{{text = '- سورس تشاك .', url = 't.me/Tshaak'},},}}
 return LuaTele.sendText(msg_chat_id, msg_id, "↯︙يمكنك عزيزي من هنا اختيار ماهي الاسئله التي تريدها .", 'md', false, false, false, false, reply_markup) end
 -- Lar --
+if (text == "انمي" or text == "↫ انمي ⌯") and ChCheck(msg) and not Redis:get(alhlafe..'Tuofe:Anime:Tuofe'..msg.chat_id) then
+Tuofe = math.random(3,1002); 
+local Text ='*⌯︙تم اختيار صورة الانمي لك*'
+keyboard = {}  
+keyboard.inline_keyboard = {{{text="• مره اخرى •",callback_data="/anime:"..msg.sender_id.user_id}},{{text='• سوࢪس الحلفي •',url="t.me/iiNzzz"}}} 
+local msg_id = msg.id/2097152/0.5 
+https.request("https://api.telegram.org/bot"..Token..'/sendphoto?chat_id=' .. msg.chat_id .. '&photo=https://t.me/Animesalhlafe/'..Tuofe..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
+end
+if Text and Text:match('/anime:'..tonumber(data.sender_user_id)..'(.*)') then
+local Tuofe = Text:match('/anime:'..tonumber(data.sender_user_id)..'(.*)')
+Tuofe = math.random(3,1002); 
+local Text ='*⌯︙تم اختيار صورة الانمي لك*'
+keyboard = {}  
+keyboard.inline_keyboard = {{{text="• مره اخرى •",callback_data="/anime:"..data.sender_user_id}},{{text="• سوࢪس الحلفي •",url="t.me/iiNzzz"}}} 
+https.request("https://api.telegram.org/bot"..Token..'/sendphoto?chat_id=' .. data.chat_id .. '&photo=https://t.me/Animesalhlafe/'..Tuofe..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..data.message_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
+end
 if text == "افتار رسم" or text == "افتارات رسم" or text == "رسم" then 
 Abs = math.random(3,102);
 local Text =''
@@ -5766,16 +5782,33 @@ keyboard.inline_keyboard = {{{text = '‹ مره اخرى ›', callback_data = 
 local msg_id = msg.id/2097152/0.5 
 https.request("https://api.telegram.org/bot"..Token..'/sendphoto?chat_id=' .. msg.chat_id .. '&photo=https://t.me/sourseselv/'..Abs..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
 end 
-elseif Text and Text:match('(%d+)/Soll') then
+if Text and Text:match('(%d+)/Soll') then
 local UserId = Text:match('(%d+)/Soll')
 if tonumber(IdUser) == tonumber(UserId) then
-if not Redis:get(Tshak.."Tshak:Status:distraction9"..data.chat_id) then return LuaTele.answerCallbackQuery(data.id,"↯︙عذراً امر صوره معطل",true) end 
-Abs = math.random(4,1171); 
-local Text ='↯︙تم اختيار الصوره لك'
+local ban = LuaTele.getUser(IdUser)
+if ban.id then
+if ban.first_name then
+banusername = ' '..ban.first_name..''
+else
+banusername = 'لا يوجد'
+end
+au ={
+type = "photo",
+media = "https://t.me/apqiy/109",
+caption = "هو الكلب ده اللي موتها يجماعه😂👇\n[".. ban.first_name.."](tg://user?id="..ban.id..")\n",
+parse_mode = "Markdown"                                                                                                                                                               
+}     
 keyboard = {} 
-keyboard.inline_keyboard = {{{text = '‹ مره اخرى ›', callback_data = msg.sender_id.user_id..'/Soll'}},{{text='- سورس تشاك .',url="t.me/Tshaak"}}}
-local msg_id = Msg_id/2097152/0.5
- https.request("https://api.telegram.org/bot"..Token..'/sendphoto?chat_id=' .. ChatId .. '&photo=https://t.me/PhotosDavid/'..Abs..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_prsjeview=true&reply_markup="..JSON.encode(keyboard)) end
+keyboard.inline_keyboard = {
+{
+{text =banusername,url = "https://t.me/"..ban.username..""}, 
+},
+}
+local ban = Msg_id/2097152/0.5
+https.request("http://api.telegram.org/bot"..Token.."/editmessagemedia?chat_id="..ChatId.."&message_id="..ban.."&media="..JSON.encode(au).."&reply_markup="..JSON.encode(keyboard))
+end
+end 
+end
 if text == "افتارات بنات" then
 if not redis:get(bot_id.."trfeh"..msg.chat_id) then
 return bot.sendText(msg.chat_id,msg.id," ✯ الترفيه معطل من قبل المشرفين","md",true)
