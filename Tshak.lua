@@ -5783,10 +5783,10 @@ ban = math.random(1,40);
 local Text ='لاختيار تويت اخري اتك ع زر بالاسفل' 
 keyboard = {}  
 keyboard.inline_keyboard = {
-{{text = 'تويت  اخري', callback_data = msg.sender_id.user_id..'/phot'}}, 
+{{text = 'تويت  اخري', callback_data = msg.sender_id.user_id..'/phjdjt'}}, 
 } 
 local msg_id = msg.id/2097152/0.5 
-https.request("https://api.telegram.org/bot"..Token..'/sendphoto?chat_id=' .. msg_chat_id .. '&photo=https://t.me/XFFX5/'..ban..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
+https.request("https://api.telegram.org/bot"..Token..'/sendphoto?chat_id=' .. msg_chat_id .. '&photo=https://t.me/sourseselv/'..ban..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
 end
 if text == "غنيلي" then
 if not Redis:get(Tshak.."Tshak:Status:distraction1"..msg_chat_id) then return LuaTele.sendText(msg_chat_id,msg_id,"↯︙عذراً امر غنيلي معطل","md",true) end 
