@@ -5763,9 +5763,9 @@ if not Redis:get(Tshak.."Tshak:Status:distraction9"..data.chat_id) then return L
 Abs = math.random(4,1171); 
 local Text ='↯︙تم اختيار الصوره لك'
 keyboard = {} 
-keyboard.inline_keyboard = {{{text = '‹ مره اخرى ›', callback_data = IdUser..'/'.. 'Photos'}},{{text='- سورس تشاك .',url="t.me/Tshaak"}}}
+keyboard.inline_keyboard = {{{text = '‹ مره اخرى ›', callback_data = IdUser..'/'.. 'Phot'}},{{text='- سورس تشاك .',url="t.me/Tshaak"}}}
 local msg_id = Msg_id/2097152/0.5
- https.request("https://api.telegram.org/bot"..Token..'/sendphoto?chat_id=' .. ChatId .. '&photo=https://t.me/hsokepop/'..Abs..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_prsjeview=true&reply_markup="..JSON.encode(keyboard)) end
+ https.request("https://api.telegram.org/bot"..Token..'/sendphoto?chat_id=' .. ChatId .. '&photo=https://t.me/XFFX5/'..Abs..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_prsjeview=true&reply_markup="..JSON.encode(keyboard)) end
 if text == 'رابط الحذف' or text == 'روابط الحذف' or text == 'بوت الحذف' or text == 'بوت حذف' then
 Text =[[
 ● Hello pro buttons at the bottom to delete social media accounts .
