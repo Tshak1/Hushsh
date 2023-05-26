@@ -5584,7 +5584,7 @@ LuaTele.sendText(msg_chat_id,msg_id,Reply_Status(msg.sender_id.user_id,"*↯︙�
 return false end
 if text == "افتارات بنات" then
 if not Redis:get(Tshak.."Tshak:Status:distraction1"..msg_chat_id) then
-return bot.sendText(msg.chat_id,msg.id," ✮ الترفيه معطل من قبل المشرفين","md",true)
+return sendText(msg.chat_id,msg.id," ✮ الترفيه معطل من قبل المشرفين","md",true)
 end
 Abs = math.random(2,140);
 local Text =''
@@ -5711,7 +5711,7 @@ if text == "صوره" or text == "صورة" then
 if not Redis:get(Tshak.."Tshak:Status:distraction5"..msg_chat_id) then return LuaTele.sendText(msg_chat_id,msg_id,"↯︙عذراً امر صوره معطل","md",true) end 
 Abs = math.random(4,1171); 
 local Text ='↯︙تم اختيار الصوره لك'
-keyboardd = {} 
+keyboard = {} 
 keyboard.inline_keyboard = {{{text = '‹ مره اخرى ›', callback_data = msg.sender_id.user_id..'/Photos'}},{{text='- سورس تشاك .',url="t.me/sourcetshak"}
 }
 }
