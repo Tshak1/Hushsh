@@ -5599,7 +5599,7 @@ if Text and Text:match('(%d+)/aftgir') then
 local UserId = Text:match('(%d+)/aftgir')
 if tonumber(data.sender_user_id) == tonumber(UserId) then
 Abs = math.random(2,140);
-local Text ='هلو عيني هاك هاي صوره ودعبل'
+local Text =''
 keyboard = {}
 keyboard.inline_keyboard = {
 {
@@ -5610,16 +5610,6 @@ https.request("https://api.telegram.org/bot"..Token..'/sendphoto?chat_id=' .. ch
 bot.deleteMessages(chat_id,{[1]= msg_id})
 end
 end
-elseif Text and Text:match('(%d+)/aftgir') then
-local UserId = Text:match('(%d+)/aftgir')
-if tonumber(IdUser) == tonumber(UserId) then
-if not Redis:get(Tshak.."Tshak:Status:distraction9"..data.chat_id) then return LuaTele.answerCallbackQuery(data.id,"↯︙عذراً امر صوره معطل",true) end 
-Abs = math.random(4,1171); 
-local Text ='↯︙تم اختيار الصوره لك'
-keyboard = {} 
-keyboard.inline_keyboard = {{{text = '‹ مره اخرى ›', callback_data = IdUser..'/'.. 'aftgir'}},{{text='- سورس تشاك .',url="t.me/sourcetshak"}}}
-local msg_id = Msg_id/2097152/0.5
- https.request("https://api.telegram.org/bot"..Token..'/sendphoto?chat_id=' .. ChatId .. '&photo=https://t.me/QXXX_4/'..Abs..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_prsjeview=true&reply_markup="..JSON.encode(keyboard)) end
 if text == "غنيلي" then
 if not Redis:get(Tshak.."Tshak:Status:distraction1"..msg_chat_id) then return LuaTele.sendText(msg_chat_id,msg_id,"↯︙عذراً امر غنيلي معطل","md",true) end 
 Abs = math.random(4,2824); 
@@ -14351,14 +14341,14 @@ keyboard.inline_keyboard = {{{text = '‹ مره اخرى ›', callback_data = 
 local msg_id = Msg_id/2097152/0.5
  https.request("https://api.telegram.org/bot"..Token..'/sendanimation?chat_id=' .. ChatId .. '&animation=https://t.me/GifDavid/'..Abs..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_prsjeview=true&reply_markup="..JSON.encode(keyboard)) end
 --
-elseif Text and Text:match('(%d+)/voice') then
-local UserId = Text:match('(%d+)/voice')
+elseif Text and Text:match('(%d+)/aftgir') then
+local UserId = Text:match('(%d+)/aftgir')
 if tonumber(IdUser) == tonumber(UserId) then
 if not Redis:get(Tshak.."Tshak:Status:distraction3"..data.chat_id) then return LuaTele.answerCallbackQuery(data.id,"↯︙عذراً امر شعر معطل",true) end 
 Abs = math.random(4,140); 
 local Text ='↯︙تم اختيار الشعر لك'
 keyboard = {} 
-keyboard.inline_keyboard = {{{text = '‹ مره اخرى ›', callback_data = IdUser..'/'.. 'voice'}},{{text='- سورس تشاك .',url="t.me/sourcetshak"}}}
+keyboard.inline_keyboard = {{{text = '‹ مره اخرى ›', callback_data = IdUser..'/'.. 'aftgir'}},{{text='- سورس تشاك .',url="t.me/sourcetshak"}}}
 local msg_id = Msg_id/2097152/0.5
  https.request("https://api.telegram.org/bot"..Token..'/sendVoice?chat_id=' .. ChatId .. '&voice=https://t.me/L1BBBL/'..Abs..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_prsjeview=true&reply_markup="..JSON.encode(keyboard)) end
  
