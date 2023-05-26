@@ -5617,17 +5617,7 @@ Redis:setex(Tshak..":"..msg.chat_id..":tag",30,true)
 LuaTele.sendText(msg.chat_id,0,'*'..texting[math.random(#texting)]..'*'..usr,'md') 
 end
 end
-if text == ("افتارات") then 
-if ChannelJoin(msg) == false then
-local Get_Chat = LuaTele.getChat(Redis:get(Tshak..'Tshak:ChanneliD:Join'))
-local NcH = (Redis:get(Tshak.."Tshak:CH:Bot") or Get_Chat.title)
-local NcHlink = (Redis:get(Tshak.."Tshak:CHlink:Bot") or "↯︙عذراً لاتستطيع استخدام البوت !\n↯︙عليك الاشتراك في القناة اولاً :")
-local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = NcH, url = 't.me/'..Redis:get(Tshak..'Tshak:Channel:Join')},},}}
-return LuaTele.sendText(msg.chat_id,msg.id,NcHlink,"md",false, false, false, false, reply_markup) end
-local R = Redis:scard(Tshak.."Tshak:List:Rd:Sudo")
-local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = '‹ افتارات بنات›', data = msg.sender_id.user_id..'/aftgir'},},{{text = '‹ افتارات شباب ›', data = msg.sender_id.user_id..'/voice'},{text = '‹ افتارات انمي ›', data = msg.sender_id.user_id..'/Mp'},},{{text = '‹ افتارات انمي شباب ›', data = msg.sender_id.user_id..'/Memz'},{text = '‹ افتارات انمي بنات ›', data = msg.sender_id.user_id..'/Remix'},},{{text = '‹ افتارات تمبلر ›', data = msg.sender_id.user_id..'/Anime'},{text = '‹ افتارات كيبوب ›', data = msg.sender_id.user_id..'/Photos'},},{{text = '‹ افتارات سينمائيه ›', data = msg.sender_id.user_id..'/Series'},{text = '‹ هيدرات ›', data = msg.sender_id.user_id..'/Movies'},},{{text = '‹ صور تمبلر بنات ›', data = msg.sender_id.user_id..'/animation'},},{{text = '- سورس تشاك .', url = 't.me/Tshaak'},},}}
-return LuaTele.sendText(msg_chat_id, msg_id, "↯︙يمكنك اختيار أحد اوامر التسليه ⇜ ⤈", 'md', false, false, false, false, reply_markup) end
--- Lar --
+
 if text and text:match("^انطق (.*)$") then
 Text = text:match("^انطق (.*)$")
 local intk = Text:gsub(" ","-")
@@ -5639,23 +5629,6 @@ end
 msg_id = msg.id/2097152/0.5 
 https.request("https://api.telegram.org/bot"..Token.."/sendaudio?chat_id="..msg.chat_id.."&caption=الكلمة "..URL.escape(lan).."&audio=http://"..URL.escape('translate.google.com/translate_tts?q='..Text..'&tl=ar&client=duncan3dc-speaker').."&reply_to_message_id="..msg_id.."&disable_web_page_preview=true")
 end
-if text == "حظر  قناه" then
-if not msg.Addictive then
-return LuaTele.sendText(msg_chat_id,msg_id,'\n*● هاذا الامر يخص⦗ '..Controller_Num(7)..' ⦘* ',"md",true)  
-end
-Redis:set(Tshak.."BANchannel"..msg.sender_id.user_id,"on") 
-LuaTele.sendText(msg_chat_id,msg_id,"●  ارسل يوزر او ايدي القناه","md",true)  
-end
-
-if text == "الغاء حظر  قناه" then
-if not msg.Addictive then
-return LuaTele.sendText(msg_chat_id,msg_id,'\n*● هاذا الامر يخص⦗ '..Controller_Num(7)..' ⦘* ',"md",true)  
-end
-Redis:set(Tshak.."UNBANchannel"..msg.sender_id.user_id,"on") 
-LuaTele.sendText(msg_chat_id,msg_id,"●  ارسل يوزر او ايدي القناه","md",true)  
-end
-
-return LuaTele.sendText(msg_chat_id,msg_id,'*↯︙امر صورتي معطل*',"md",true)  end end
 if text == 'معلومات' then
 local ban = LuaTele.getUser(msg.sender_id.user_id)
 if ban.first_name then
