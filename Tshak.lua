@@ -5617,7 +5617,6 @@ Redis:setex(Tshak..":"..msg.chat_id..":tag",30,true)
 LuaTele.sendText(msg.chat_id,0,'*'..texting[math.random(#texting)]..'*'..usr,'md') 
 end
 end
-
 if text and text:match("^انطق (.*)$") then
 Text = text:match("^انطق (.*)$")
 local intk = Text:gsub(" ","-")
@@ -5628,56 +5627,6 @@ lan = "ar"
 end
 msg_id = msg.id/2097152/0.5 
 https.request("https://api.telegram.org/bot"..Token.."/sendaudio?chat_id="..msg.chat_id.."&caption=الكلمة "..URL.escape(lan).."&audio=http://"..URL.escape('translate.google.com/translate_tts?q='..Text..'&tl=ar&client=duncan3dc-speaker').."&reply_to_message_id="..msg_id.."&disable_web_page_preview=true")
-end
-if text == 'معلومات' then
-local ban = LuaTele.getUser(msg.sender_id.user_id)
-if ban.first_name then
-news = " "..ban.first_name.." "
-else
-news = " لا يوجد"
-end
-if ban.first_name then
-UserName = ' '..ban.first_name..' '
-else
-UserName = 'لا يوجد'
-end
-if ban.username then
-banusername = '@'..ban.username..''
-else
-banusername = 'لا يوجد'
-end
-local UserId = msg.sender_id.user_id
-local RinkBot = msg.Name_Controller
-local TotalMsg = Redis:get(Tshak..'Num:Message:User'..msg_chat_id..':'..msg.sender_id.user_id) or 0
-local news = '🏷️›ɪᴅ : '..UserId
-local uass = '📇›ɴᴀᴍᴇ : '..UserName
-local banhas = 'ℹ️›ᴜѕᴇ : '..banusername
-local rengk = '⏏️›ѕᴛᴀ : '..RinkBot
-local masha = '💳›ᴍѕɢ : '..TotalMsg
-local BIO = '🌟›ʙɪᴏ : ..'..(msg.sender_id.user_id)
-local again = 'مرحبا في قائمة معلوماتي 🤍'
-local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {
-{
-{text = uass, url = "https://t.me/"..ban.username..""}, 
-},
-{
-{text = news, data = msg.sender_id.user_id..'/news'}, 
-},
-{
-{text = banhas, data = msg.sender_id.user_id..'/banhas'}, 
-},
-{
-{text = rengk, url = "https://t.me/"..ban.username..""}, 
-},
-{
-{text = masha, url = "https://t.me/"..ban.username..""}, 
-},
-{
-{text = BIO, data = msg.sender_id.user_id..'/BIO'}, 
-},
-}
-}
-return LuaTele.sendText(msg_chat_id, msg_id, again, 'md', false, false, false, false, reply_markup)
 end
 if text == 'انا مين' then
 local ban = LuaTele.getUser(msg.sender_id.user_id)
@@ -5703,17 +5652,6 @@ local news = '● رتبتك هي : '..msg.Name_Controller
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {
 {{text =news,url = "https://t.me/"..ban.username..""}, },}}
 return LuaTele.sendText(msg_chat_id, msg_id, news, 'md', false, false, false, false, reply_markup)
-end
-if text == "غنيلي" then
-if not Redis:get(Tshak.."Tshak:Status:distraction1"..msg_chat_id) then return LuaTele.sendText(msg_chat_id,msg_id,"↯︙عذراً امر غنيلي معطل","md",true) end 
-Abs = math.random(2,140); 
-local Text ='*↯‍︙تم اختيار اغنيه لك*'
-keyboard = {} 
-keyboard.inline_keyboard = {{{text = '‹ مره اخرى ›', callback_data = msg.sender_id.user_id..'/Song'}},{{text='- سورس تشاك .',url="t.me/Tshaak"}
-}
-}
-local msg_id = msg.id/2097152/0.5
-https.request("https://api.telegram.org/bot"..Token..'/sendVoice?chat_id=' .. msg.chat_id .. '&voice=https://t.me/TEAMSUL/'..Abs..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
 end
 if text == "متحركه" then
 if not Redis:get(Tshak.."Tshak:Status:distraction2"..msg_chat_id) then return LuaTele.sendText(msg_chat_id,msg_id,"↯︙عذراً امر متحركه معطل","md",true) end 
