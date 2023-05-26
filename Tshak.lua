@@ -5583,9 +5583,7 @@ end
 LuaTele.sendText(msg_chat_id,msg_id,Reply_Status(msg.sender_id.user_id,"*↯︙تم فتح جميع الاوامر*").unLock,"md",true)  
 return false end
 if text == "افتارات بنات" then
-if not Redis:get(Tshak.."Tshak:Status:distraction1"..msg_chat_id) then
-return (msg.chat_id,msg.id," ✮ الترفيه معطل من قبل المشرفين","md",true)
-end
+if not Redis:get(Tshak.."Tshak:Status:distraction1"..msg_chat_id) then return LuaTele.sendText(msg_chat_id,msg_id,"↯︙عذراً امر غنيلي معطل","md",true) end 
 Abs = math.random(2,140);
 local Text =''
 local MsgId = msg.id/2097152/0.5
