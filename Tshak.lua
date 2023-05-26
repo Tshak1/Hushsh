@@ -5595,6 +5595,21 @@ keyboard.inline_keyboard = {{{text = '✮ افتار آخر ✮',callback_data =
 local msg_id = msg.id/2097152/0.5 
 https.request("https://api.telegram.org/bot"..Token..'/sendphoto?chat_id=' .. msg.chat_id .. '&photo=https://t.me/QXXX_4/'..Abs..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..MsgId.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
 end
+if Text and Text:match('(%d+)/aftgir') then
+local UserId = Text:match('(%d+)/aftgir')
+if tonumber(data.sender_user_id) == tonumber(UserId) then
+Abs = math.random(2,140);
+local Text =''
+keyboard = {}
+keyboard.inline_keyboard = {
+{
+{text = '✮ افتار آخر ✮', callback_data =data.sender_user_id..'/aftgir'}, 
+},
+}
+https.request("https://api.telegram.org/bot"..Token..'/sendphoto?chat_id=' .. chat_id .. '&photo=https://t.me/QXXX_4/'..Abs..'&caption=' .. URL.escape(Text).."&reply_to_message_id=0&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
+bot.deleteMessages(chat_id,{[1]= msg_id})
+end
+end
 if text == "غنيلي" then
 if not Redis:get(Tshak.."Tshak:Status:distraction1"..msg_chat_id) then return LuaTele.sendText(msg_chat_id,msg_id,"↯︙عذراً امر غنيلي معطل","md",true) end 
 Abs = math.random(4,2824); 
