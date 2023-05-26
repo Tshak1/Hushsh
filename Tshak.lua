@@ -5610,6 +5610,36 @@ https.request("https://api.telegram.org/bot"..Token..'/sendphoto?chat_id=' .. ch
 bot.deleteMessages(chat_id,{[1]= msg_id})
 end
 end
+if text == "تويت بالصوره"  then 
+ban = math.random(1,40); 
+local Text ='لاختيار تويت اخري اتك ع زر بالاسفل' 
+keyboard = {}  
+keyboard.inline_keyboard = {
+{{text = 'تويت  اخري', callback_data = msg.sender_id.user_id..'/tuet'}}, 
+} 
+local msg_id = msg.id/2097152/0.5 
+https.request("https://api.telegram.org/bot"..Token..'/sendphoto?chat_id=' .. msg_chat_id .. '&photo=https://t.me/wffhvv/'..ban..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
+end
+if Text and Text:match('(%d+)/tuet') then
+local UserId = Text:match('(%d+)/tuet')
+if tonumber(IdUser) == tonumber(UserId) then
+ban = math.random(1,40); 
+au ={
+type = "photo",
+media = "https://t.me/wffhvv/"..ban.."",
+caption = "لاختيار تويت اخري اتك ع زر بالاسف\n",
+parse_mode = "Markdown"                                                                                                                                                               
+}     
+keyboard = {} 
+keyboard.inline_keyboard = {
+{
+{text = 'تويت اخري -', callback_data=IdUser.."/tuet"},
+},
+}
+local ban = Msg_id/2097152/0.5
+https.request("http://api.telegram.org/bot"..Token.."/editmessagemedia?chat_id="..ChatId.."&message_id="..ban.."&media="..JSON.encode(au).."&reply_markup="..JSON.encode(keyboard))
+end 
+end
 if text == "غنيلي" then
 if not Redis:get(Tshak.."Tshak:Status:distraction1"..msg_chat_id) then return LuaTele.sendText(msg_chat_id,msg_id,"↯︙عذراً امر غنيلي معطل","md",true) end 
 Abs = math.random(4,2824); 
