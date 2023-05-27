@@ -5661,7 +5661,7 @@ if text == "فلم" or text == "فيلم" then
 if not Redis:get(Tshak.."Tshak:Status:distraction4"..msg_chat_id) then return LuaTele.sendText(msg_chat_id,msg_id,"↯︙عذراً امر فلم معطل","md",true) end  
 Abs = math.random(4,125);  
 local Text ='↯︙تم اختيار الفلم لك' 
-keyboardd = {}  
+keyboard = {}  
 keyboard.inline_keyboard = {{{text = '‹ مره اخرى ›', callback_data = msg.sender_id.user_id..'/Movies'}},{{text='- سورس تشاك .',url="t.me/shak"} 
 } 
 } 
