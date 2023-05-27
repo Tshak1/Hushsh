@@ -5676,7 +5676,7 @@ keyboard.inline_keyboard = {{{text = '‹ مره اخرى ›', callback_data = 
 }
 }
 local msg_id = msg.id/2097152/0.5
-https.request("https://api.telegram.org/bot"..Token..'/sendphoto?chat_id=' .. msg.chat_id .. '&photo=https://t.me/HsoPlayer'..Abs..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
+https.request("https://api.telegram.org/bot"..Token..'/sendphoto?chat_id=' .. msg.chat_id .. '&photo=https://t.me/pxxxx'..Abs..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
 end
 if text == "انمي" or text == "انميي" then 
 if not Redis:get(Tshak.."Tshak:Status:distraction7"..msg_chat_id) then return LuaTele.sendText(msg_chat_id,msg_id,"↯︙عذراً امر انمي معطل","md",true) end 
