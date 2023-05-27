@@ -14334,9 +14334,9 @@ local Text ='↯︙تم اختيار الشعر لك'
 keyboard = {} 
 keyboard.inline_keyboard = {{{text = '‹ مره اخرى ›', callback_data = IdUser..'/'.. 'aftgir'}},{{text='- سورس تشاك .',url="t.me/sourcetshak"}}}
 local msg_id = Msg_id/2097152/0.5
- https.request("https://api.telegram.org/bot"..Token..'/sendVoice?chat_id=' .. ChatId .. '&voice=https://t.me/L1BBBL/'..Abs..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_prsjeview=true&reply_markup="..JSON.encode(keyboard)) end
+https.request("https://api.telegram.org/bot"..Token..'/sendphoto?chat_id=' .. msg.chat_id .. '&photo=https://t.me/QXXX_4/'..Abs..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..MsgId.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) end
  
- elseif Text and Text:match('(%d+)/rapp') then
+elseif Text and Text:match('(%d+)/rapp') then
 local UserId = Text:match('(%d+)/rapp')
 if tonumber(IdUser) == tonumber(UserId) then
 if not Redis:get(Tshak.."Tshak:Status:distraction11"..data.chat_id) then return LuaTele.answerCallbackQuery(data.id,"↯︙عذراً امر راب معطل",true) end 
