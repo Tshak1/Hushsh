@@ -9091,7 +9091,7 @@ return LuaTele.sendText(msg_chat_id,msg_id,'*↯︙لا توجد صوره في �
 end
 else
 return LuaTele.sendText(msg_chat_id,msg_id,'*↯︙امر صورتي معطل*',"md",true)  end end
-if text == 'شخصيتي' or text == 'حددي شخصيتي' or text == 'حدد شخصيتي' then if not redis:get(bot_id.."shakse"..msg.chat_id) then 
+if text == 'شخصيتي' or text == 'حددي شخصيتي' or text == 'حدد شخصيتي' then 
 return bot.sendText(msg.chat_id,msg.id," ✮ شخصيتي معطلة من قبل المشرفين","md",true) 
 end 
 local texting = {"مستفز",  
@@ -9113,10 +9113,15 @@ local texting = {"مستفز",
 "جلب  ", 
 "مطينه  ", 
 "جلبه  ", 
-}  zezee = texting[math.random(#texting)] 
+}  
+zezee = texting[math.random(#texting)] 
 local Jabwa = bot.getUser(msg.sender_id.user_id)
 local photo = bot.getUserProfilePhotos(msg.sender_id.user_id) 
-local news = 'RinkBot : '..zezee if photo.total_count > 0 then data = {}  data.inline_keyboard = { { 
+local news = 'RinkBot : '..zezee 
+if photo.total_count > 0 then 
+data = {}  
+data.inline_keyboard = { 
+{ 
 {text =news,url = "https://t.me/"..Jabwa.username..""},  
 }, 
 } 
