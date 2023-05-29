@@ -2062,88 +2062,6 @@ Redis:srem(Tshak.."Tshak:ChekBotAdd",msg_chat_id)
 return LuaTele.sendText(msg_chat_id,msg_id,Reply_Status(msg.sender_id.user_id,'*↯︙تم تعطيل المجموعة ⇜ ‹ *['..Get_Chat.title..']('..Info_Chats.invite_link.invite_link..')* ›*').unLock,'md',true, false, false, false, reply_markup) end end
 if chat_type(msg.chat_id) == "GroupBot" and Redis:sismember(Tshak.."Tshak:ChekBotAdd",msg_chat_id) then
 Redis:incr(Tshak..'Tshak:Num:Message:User'..msg.chat_id..':'..msg.sender_id.user_id) 
-if text == ("ايدي") and msg.reply_to_message_id == 0 or text == ("id") and msg.reply_to_message_id == 0 then
-if ChannelJoin(msg) == false thenlocal Get_Chat = LuaTele.getChat(Redis:get(Tshak..'Tshak:ChanneliD:Join'))
-local NcH = (Redis:get(Tshak.."Tshak:CH:Bot") or Get_Chat.title)
-local NcHlink = (Redis:get(Tshak.."Tshak:CHlink:Bot") or "↯︙عذراً لاتستطيع استخدام البوت !\n↯︙عليك الاشتراك في القناة اولاً :")
-local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = NcH, url = 't.me/'..Redis:get(Tshak..'Tshak:Channel:Join')},},}}
-return LuaTele.sendText(msg.chat_id,msg.id,NcHlink,"md",false, false, false, false, reply_markup) end 
-if not Redis:get(Tshak.."Tshak:Status:Id"..msg_chat_id) then return false end
-local UserInfo = LuaTele.getUser(msg.sender_id.user_id)
-local photo = LuaTele.getUserProfilePhotos(msg.sender_id.user_id)
-local UserId = msg.sender_id.user_id
-local RinkBot = msg.Name_Controllerlocal TotalMsg = Redis:get(Tshak..'Tshak:Num:Message:User'..msg_chat_id..':'..msg.sender_id.user_id) or 0
-local TotalPhoto = photo.total_count or 0
-local TotalEdit = Redis:get(Tshak..'Tshak:Num:Message:Edit'..msg_chat_id..msg.sender_id.user_id) or 0
-local TotalMsgT = Total_message(TotalMsg) 
-local NumberGames = Redis:get(Tshak.."Tshak:Num:Add:Games"..msg.chat_id..msg.sender_id.user_id) or 0
-local NumAdd = Redis:get(Tshak.."Tshak:Num:Add:Memp"..msg.chat_id..":"..msg.sender_id.user_id) or 0local Texting = {'ملاك وناسيك بكروبنه',"حلقوم واللة ","اطلق صوره","كيكك واللة","لازك بيها غيرها عاد",}
-local Description = Texting[math.random(#Texting)]
-if UserInfo.username then
-UserInfousername = '@'..UserInfo.username..''
-else
-UserInfousername = 'لا يوجد'
-end
-Get_Is_Id = Redis:get(Tshak.."Tshak:Set:Id:Group"..msg_chat_id)
-if Redis:get(Tshak.."Tshak:Status:IdPhoto"..msg_chat_id) then
-if Get_Is_Id then
-local Get_Is_Id = Get_Is_Id:gsub('#AddMem',NumAdd) 
-local Get_Is_Id = Get_Is_Id:gsub('#id',msg.sender_id.user_id) 
-local Get_Is_Id = Get_Is_Id:gsub('#username',UserInfousername) 
-local Get_Is_Id = Get_Is_Id:gsub('#msgs',TotalMsg) 
-local Get_Is_Id = Get_Is_Id:gsub('#edit',TotalEdit) 
-local Get_Is_Id = Get_Is_Id:gsub('#stast',RinkBot) 
-local Get_Is_Id = Get_Is_Id:gsub('#auto',TotalMsgT) 
-local Get_Is_Id = Get_Is_Id:gsub('#Description',Description) 
-local Get_Is_Id = Get_Is_Id:gsub('#game',NumberGames) 
-local Get_Is_Id = Get_Is_Id:gsub('#photos',TotalPhoto) 
-if photo.total_count > 0 then return LuaTele.sendPhoto(msg.chat_id, msg.id, photo.photos[1].sizes[#photo.photos[1].sizes].photo.remote.id,Get_Is_Id)
-else
-return LuaTele.sendText(msg_chat_id,msg_id,Get_Is_Id,"md",true) 
-end
-else
-if photo.total_count > 0 then 
-local RAG = "\n↯︙'..Description..'\n↯︙معرفك ⇜ '..UserInfousername..'\n↯︙ايديك ⇜ ❨ '..UserId..' ❩\n↯︙رتبتك ⇜ '..RinkBot..'\n↯︙صورك ⇜ ❨ '..TotalPhoto..' ❩\n↯︙رسائلك ⇜ ❨ '..TotalMsg..' ❩\n↯︙سحكاتك ⇜ ❨ '..TotalEdit..' ❩\n↯︙تفاعلك ⇜ '..TotalMsgT..'\n↯︙نقاطك ⇜ ❨ '..NumberGames..' ❩"
-data = {} 
-data.inline_keyboard = {
-{
-{text =UserInfo.first_name,url = "https://t.me/"..UserInfo.username..""}, 
-},
-}
-msgg = msg.id/2097152/0.5
-return https.request("https://api.telegram.org/bot"..Token.."/sendphoto?chat_id=" .. msg_chat_id .. "&photo="..photo.photos[1].sizes[#photo.photos[1].sizes].photo.remote.id.."&caption=".. URL.escape(RAG).."&reply_to_message_id="..msgg.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(data))
-else
-data = {} 
-data.inline_keyboard = {
-{
-{text =UserInfo.first_name,url = "https://t.me/"..UserInfo.username..""}, 
-},
-}
-msgg = msg.id/2097152/0.5
-return https.request("https://api.telegram.org/bot"..Token.."/sendMessage?chat_id=" .. msg_chat_id .. "&text=".. URL.escape(RAG).."&reply_to_message_id="..msgg.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(data))
-else
-if Get_Is_Id then
-local Get_Is_Id = Get_Is_Id:gsub('#AddMem',NumAdd) local Get_Is_Id = Get_Is_Id:gsub('#id',msg.sender_id.user_id) 
-local Get_Is_Id = Get_Is_Id:gsub('#username',UserInfousername) local Get_Is_Id = Get_Is_Id:gsub('#msgs',TotalMsg) local Get_Is_Id = Get_Is_Id:gsub('#edit',TotalEdit) local Get_Is_Id = Get_Is_Id:gsub('#stast',RinkBot) 
-local Get_Is_Id = Get_Is_Id:gsub('#auto',TotalMsgT) local Get_Is_Id = Get_Is_Id:gsub('#Description',Description) local Get_Is_Id = Get_Is_Id:gsub('#game',NumberGames) 
-local Get_Is_Id = Get_Is_Id:gsub('#photos',TotalPhoto) 
-data = {} 
-data.inline_keyboard = {
-{
-{text =UserInfo.first_name,url = "https://t.me/"..UserInfo.username..""}, 
-},
-}
-msgg = msg.id/2097152/0.5return https.request("https://api.telegram.org/bot"..Token.."/sendMessage?chat_id=" .. msg_chat_id .. "&text=".. URL.escape(Get_Is_Id).."&reply_to_message_id="..msgg.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(data))else
-local RAG = "\n↯︙'..Description..'\n↯︙معرفك ⇜ '..UserInfousername..'\n↯︙ايديك ⇜ ❨ '..UserId..' ❩\n↯︙رتبتك ⇜ '..RinkBot..'\n↯︙صورك ⇜ ❨ '..TotalPhoto..' ❩\n↯︙رسائلك ⇜ ❨ '..TotalMsg..' ❩\n↯︙سحكاتك ⇜ ❨ '..TotalEdit..' ❩\n↯︙تفاعلك ⇜ '..TotalMsgT..'\n↯︙نقاطك ⇜ ❨ '..NumberGames..' ❩"
-data = {} 
-data.inline_keyboard = {
-{
-{text =UserInfo.first_name,url = "https://t.me/"..UserInfo.username..""}, 
-},
-}
-msgg = msg.id/2097152/0.5
-return https.request("https://api.telegram.org/bot"..Token.."/sendMessage?chat_id=" .. msg_chat_id .. "&text=".. URL.escape(RAG).."&reply_to_message_id="..msgg.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(data))
-end endend
 if text == ('ايدي') and msg.reply_to_message_id ~= 0 or text == ('كشف') and msg.reply_to_message_id ~= 0 then
 local Message_Reply = LuaTele.getMessage(msg.chat_id, msg.reply_to_message_id)
 local UserInfo = LuaTele.getUser(Message_Reply.sender_id.user_id)
@@ -2298,6 +2216,45 @@ else
 Bio = 'لا يوجد'
 end
 return LuaTele.sendText(msg_chat_id,msg_id,'\n↯︙نبذتك ⇜ ❨ '..Bio..' ❩',"md",true)  end
+if text == 'شخصيتي' or text == 'حددي شخصيتي' or text == 'حدد شخصيتي' then
+if not redis:get(bot_id.."shakse"..msg.chat_id) then
+return bot.sendText(msg.chat_id,msg.id," ✮ شخصيتي معطلة من قبل المشرفين","md",true)
+end
+local texting = {"Get_Rank", 
+"Get_Rank  ",
+"Get_Rank  ", 
+"Get_Rank ", 
+"Get_Rank  ", 
+"Get_Rank ", 
+"Get_Rank  ", 
+"Get_Rank  ", 
+"Get_Rank ", 
+"Get_Rank  ", 
+"Get_Rank  ", 
+"Get_Rank  ",
+"Get_Rank  ",
+"Get_Rank  ",
+"Get_Rank  ",
+"Get_Rank ",
+"Get_Rank  ",
+"Get_Rank  ",
+"Get_Rank  ",
+} 
+zezee = texting[math.random(#texting)]
+local Jabwa = bot.getUser(msg.sender_id.user_id)
+local photo = bot.getUserProfilePhotos(msg.sender_id.user_id)
+local news = 'شخصيتك : '..zezee
+if photo.total_count > 0 then
+data = {} 
+data.inline_keyboard = {
+{
+{text =news,url = "https://t.me/"..Jabwa.username..""}, 
+},
+}
+local msgg = msg.id/2097152/0.5
+https.request("https://api.telegram.org/bot"..Token.."/sendphoto?chat_id=" .. msg.chat_id .. "&photo="..photo.photos[1].sizes[#photo.photos[1].sizes].photo.remote.id.."&photo=".. URL.escape(news).."&reply_to_message_id="..msgg.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(data))
+end
+end
 if text == 'اسمي' then
 if not msg.Managers then return LuaTele.sendText(msg_chat_id,msg_id,'\n↯︙هذه الميزة للادمنية واعلى فقط',"md",true)  end
 local UserInfo = LuaTele.getUser(msg.sender_id.user_id) 
@@ -5604,7 +5561,8 @@ LuaTele.sendText(msg_chat_id,msg_id,Reply_Status(msg.sender_id.user_id,"*↯︙�
 return false end
 if text == "تفعيل سمسمي" then
 if not msg.Manger then
-return send(msg.chat_id,msg.id,'\n*• هذا الامر يخص  '..Controller_Num(6)..' * ',"md",true)  end
+return send(msg.chat_id,msg.id,'\n*• هذا الامر يخص  '..Controller_Num(6)..' * ',"md",true)  
+end
 Redis:del(Fast.."smsme"..msg.chat_id)
 send(msg.chat_id,msg.id,"• تم تفعيل سمسمي")
 end
