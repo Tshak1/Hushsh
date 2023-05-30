@@ -2334,8 +2334,7 @@ end
 if text == ' رتبتي' or text == " رتبتيي" then
 local Jabwa = LuaTele.getUser(msg.sender_id.user_id)
 local photo = LuaTele.getUserProfilePhotos(msg.sender_id.user_id)
-local naws = '⌁︙سيد هاذ اسمك ↫ 
-'..Name
+local naws = '⌁︙سيد هاذ اسمك ↫ '..Name
 local news = '⌁︙سيد هاي رتبتك ↫ '..msg.Name_Controller
 if photo.total_count > 0 then
 data = {} 
