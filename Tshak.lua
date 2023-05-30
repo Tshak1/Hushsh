@@ -2316,21 +2316,6 @@ end
 end  
 end
 end
-if text == 'انا منو' or text == "منو اني" then
-local Jabwa = LuaTele.getUser(msg.sender_id.user_id)
-local photo = LuaTele.getUserProfilePhotos(msg.sender_id.user_id)
-local news = '⌁︙حبي انت ↫ '..msg.Name_Controller
-if photo.total_count > 0 then
-data = {} 
-data.inline_keyboard = {
-{
-{text = news,url = "https://t.me/"..Jabwa.username..""}, 
-},
-}
-local msgg = msg_id/2097152/0.5
-https.request("https://api.telegram.org/bot"..Token.."/sendphoto?chat_id=" .. msg_chat_id .. "&photo="..photo.photos[1].sizes[#photo.photos[1].sizes].photo.remote.id.."&photo=".. URL.escape(news).."&reply_to_message_id="..msgg.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(data))
-end
-end
 if text == ' رتبتي' or text == " رتبتيي" then
 local Jabwa = LuaTele.getUser(msg.sender_id.user_id)
 local photo = LuaTele.getUserProfilePhotos(msg.sender_id.user_id)
