@@ -2271,7 +2271,7 @@ Name = ''
 end
 return LuaTele.sendText(msg_chat_id,msg_id,'\n⌁︙اسمك ↫ ‹ '..Name..' › ',"md",true, false, false, false, reply_markup)
 end
-if text == 'رتبتي' then
+if text == 'الاللل' then
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = '‹ مسح › ', data =msg.sender_id.user_id..'/'.. 'delAmr'},},}}
  return LuaTele.sendText(msg_chat_id,msg_id,'\n⌁︙رتبتك ↫ ‹ '..msg.Name_Controller..' ›',"md",true, false, false, false, reply_markup)
  end
@@ -2299,15 +2299,15 @@ local UserInfo = LuaTele.getUser(v.member_id.user_id)
 local photo = LuaTele.getUserProfilePhotos(UserInfo.id)
 if x == 1 or x == tags or k == 0 then 
 tags = x + 1 
-t = "اختارتلك مراتك يا نجم يلا بارك الله لكم وبارك عليكم ،😂❤️ \n"
-end 
+t = "    - مو دنسويلك تاك حبي دتعال  \n"
+end
 x = x + 1 
 if UserInfo.first_name ~= '' then
 if x == 1 or x == tags or k == 0 then 
 if photo.total_count > 0 then
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {
 {
-{text = '🌟 هذي هيا نصيبك وقمستك 🌟',  url = 't.me/'..UserInfo.username }
+{text = '- معرف العضو :',  url = 't.me/'..UserInfo.username }
 },
 }
 }
@@ -2334,14 +2334,12 @@ end
 if text == ' رتبتي' or text == " رتبتيي" then
 local Jabwa = LuaTele.getUser(msg.sender_id.user_id)
 local photo = LuaTele.getUserProfilePhotos(msg.sender_id.user_id)
-local naws = '⌁︙سيد هاذ اسمك ↫ '..Name
 local news = '⌁︙سيد هاي رتبتك ↫ '..msg.Name_Controller
 if photo.total_count > 0 then
 data = {} 
 data.inline_keyboard = {
 {
 {text = news,url = "https://t.me/"..Jabwa.username..""}, 
-{text = naws,url = "https://t.me/"..Jabwa.username..""}, 
 },
 }
 local msgg = msg_id/2097152/0.5
