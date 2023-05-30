@@ -2335,7 +2335,7 @@ if text == ' رتبتي' or text == " رتبتيي" then
 local Jabwa = LuaTele.getUser(msg.sender_id.user_id)
 local photo = LuaTele.getUserProfilePhotos(msg.sender_id.user_id)
 local naws = '⌁︙سيد هاذ اسمك ↫ 
-..Name'
+'..Name
 local news = '⌁︙سيد هاي رتبتك ↫ '..msg.Name_Controller
 if photo.total_count > 0 then
 data = {} 
@@ -5253,17 +5253,26 @@ Redis:set(Tshak.."Tshak:lockalllll"..msg_chat_id,"on")
 LuaTele.sendText(msg_chat_id,msg_id,Reply_Status(msg.sender_id.user_id,"⌁︙ تم فتح @all هنا").Lock,"md",true)  
 return false
 end
-if text == 'مستقبلي'  or text == "مراتي"  or text == "جوزي"   and tonumber(msg.reply_to_message_id) > 0    thenlocal data = LuaTele.getMessage(msg.chat_id, msg.reply_to_message_id)if data.content.photo thenif data.content.photo.sizes[1].photo.remote.id thenidPhoto = data.content.photo.sizes[1].photo.remote.idelseif data.content.photo.sizes[2].photo.remote.id thenidPhoto = data.content.photo.sizes[2].photo.remote.id
+if text == 'مستقبلي'  or text == "مراتي"  or text == "جوزي"   and tonumber(msg.reply_to_message_id) > 0    then
+local data = LuaTele.getMessage(msg.chat_id, msg.reply_to_message_id)
+if data.content.photo then
+if data.content.photo.sizes[1].photo.remote.id then
+idPhoto = data.content.photo.sizes[1].photo.remote.id
+elseif data.content.photo.sizes[2].photo.remote.id then
+idPhoto = data.content.photo.sizes[2].photo.remote.id
 elseif data.content.photo.sizes[3].photo.remote.id then
 idPhoto = data.content.photo.sizes[3].photo.remote.id
-endlocal Info_Members = LuaTele.searchChatMembers(msg_chat_id, "*", 200)
+end
+local Info_Members = LuaTele.searchChatMembers(msg_chat_id, "*", 200)
 x = 0 
 tags = 0 
 local list = Info_Members.members
-v = list[math.random(#list)]local UserInfo = LuaTele.getUser(v.member_id.user_id)
+v = list[math.random(#list)]
+local UserInfo = LuaTele.getUser(v.member_id.user_id)
 local photo = LuaTele.getUserProfilePhotos(UserInfo.id)
 if x == 1 or x == tags or k == 0 then 
-tags = x + 1 t = "دا مستقبلك ونصيبك وقسمتك  ،😂❤️ \n"
+tags = x + 1 
+t = "دا مستقبلك ونصيبك وقسمتك  ،😂❤️ \n"
 end 
 x = x + 1
 if UserInfo.first_name ~= '' then
@@ -8635,7 +8644,8 @@ local NcHlink = (Redis:get(Tshak.."Tshak:CHlink:Bot") or "↯︙عذراً لا�
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = NcH, url = 't.me/'..Redis:get(Tshak..'Tshak:Channel:Join')},},}}
 return LuaTele.sendText(msg.chat_id,msg.id,NcHlink,"md",false, false, false, false, reply_markup) end
 local R = Redis:scard(Tshak.."Tshak:List:Rd:Sudo")
-local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = '‹ غنيلي ›', data = msg.sender_id.user_id..'/Song'},},{{text = '‹ شعر ›', data = msg.sender_id.user_id..'/voice'},{text = '‹ اغنيه ›', data = msg.sender_id.user_id..'/Mp'},},{{text = '‹ ميمز ›', data = msg.sender_id.user_id..'/Memz'},{text = '‹ ريمكس ›', data = msg.sender_id.user_id..'/Remix'},},{{text = '‹ انمي ›', data = msg.sender_id.user_id..'/Anime'},{text = '‹ صوره ›', data = msg.sender_id.user_id..'/Photos'},},{{text = '‹ مسلسل ›', data = msg.sender_id.user_id..'/Series'},{text = '‹ فلم ›', data = msg.sender_id.user_id..'/Movies'},},{{text = '‹ متحركه ›', data = msg.sender_id.user_id..'/animation'},},{{text = '- سورس تشاك .', url = 't.me/sourcetshak'},},}}return LuaTele.sendText(msg_chat_id, msg_id, "↯︙يمكنك اختيار أحد اوامر التسليه ⇜ ⤈", 'md', false, false, false, false, reply_markup) end
+local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = '‹ غنيلي ›', data = msg.sender_id.user_id..'/Song'},},{{text = '‹ شعر ›', data = msg.sender_id.user_id..'/voice'},{text = '‹ اغنيه ›', data = msg.sender_id.user_id..'/Mp'},},{{text = '‹ ميمز ›', data = msg.sender_id.user_id..'/Memz'},{text = '‹ ريمكس ›', data = msg.sender_id.user_id..'/Remix'},},{{text = '‹ انمي ›', data = msg.sender_id.user_id..'/Anime'},{text = '‹ صوره ›', data = msg.sender_id.user_id..'/Photos'},},{{text = '‹ مسلسل ›', data = msg.sender_id.user_id..'/Series'},{text = '‹ فلم ›', data = msg.sender_id.user_id..'/Movies'},},{{text = '‹ متحركه ›', data = msg.sender_id.user_id..'/animation'},},{{text = '- سورس تشاك .', url = 't.me/sourcetshak'},},}}
+return LuaTele.sendText(msg_chat_id, msg_id, "↯︙يمكنك اختيار أحد اوامر التسليه ⇜ ⤈", 'md', false, false, false, false, reply_markup) end
 -- Lar --
 if text == "اضف رد انلاين" then
   if not msg.Addictive then
