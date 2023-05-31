@@ -2292,10 +2292,10 @@ end
 if text == 'انا منو' or text == "منو اني" then
 if not Redis:get(Tshak.."Tshak:Status:IdPhoto"..msg_chat_id) then
 return false
-end  
-local Jabwa = LuaTele.getUser(.sender_id.user_id)
+end
+local Jabwa = LuaTele.getUser(msg.sender_id.user_id)
 local photo = LuaTele.getUserProfilePhotos(msg.sender_id.user_id)
-local news = '⌁︙حبي انت ↫'..msg.Name_Controller
+local news = '↯︙حبي انت ⇜ '..msg.Name_Controller
 if photo.total_count > 0 then
 data = {} 
 data.inline_keyboard = {
