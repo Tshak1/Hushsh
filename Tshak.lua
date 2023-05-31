@@ -2289,10 +2289,10 @@ UserInfousername = 'لا يوجد'
 end
 return LuaTele.sendText(msg_chat_id,msg_id,'\n⌁︙معرفك ↫ ‹ '..UserInfousername..' ›',"md",true, false, false, false, reply_markup)
 end
-if text == 'رر' or text == "ر" then
-local Jabwa = LuaTele.getUser(msg.sender_id.user_id)
+if text == 'انا منو' or text == "منو اني" then
+local Jabwa = LuaTele.getUser(.sender_id.user_id)
 local photo = LuaTele.getUserProfilePhotos(msg.sender_id.user_id)
-local nsws = 'تفاعلك'..TotalMsgT
+local nsws = 'تفاعلك'..Name
 local news = '⌁︙حبي انت ↫'..msg.Name_Controller
 if photo.total_count > 0 then
 data = {} 
