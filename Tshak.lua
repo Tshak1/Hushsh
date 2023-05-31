@@ -2317,8 +2317,11 @@ end
 end
 end
 
-if text == "التفاعل" and ChCheck(msg) then local EntryNumber = (DevAbs:get(Tshak..'Abs:EntryNumber'..msg.chat_id_..':'..os.date('%d')) or 0) 
-local ExitNumber = (DevAbs:get(Tshak..'Abs:ExitNumber'..msg.chat_id_..':'..os.date('%d')) or 0) local MsgNumberDay = (DevAbs:get(Tshak..'Abs:MsgNumberDay'..msg.chat_id_..':'..os.date('%d')) or 0) Dev_Abs(msg.chat_id_, msg.id_, 1, "⌁︙انضمام الاعضاء اليوم ↫ *"..EntryNumber.."*\n⌁︙مغادرة الاعضاء اليوم ↫ *"..ExitNumber.."*\n⌁︙عدد الرسائل اليوم ↫ *"..MsgNumberDay.."*\n⌁︙نسبة التفاعل اليوم ↫ *"..math.random(40,100).."%*", 1, 'md') 
+if text == "التفاعل"  then 
+local EntryNumber = (DevAbs:get(Tshak..'Abs:EntryNumber'..msg.chat_id_..':'..os.date('%d')) or 0) 
+local ExitNumber = (DevAbs:get(Tshak..'Abs:ExitNumber'..msg.chat_id_..':'..os.date('%d')) or 0) 
+local MsgNumberDay = (DevAbs:get(Tshak..'Abs:MsgNumberDay'..msg.chat_id_..':'..os.date('%d')) or 0) 
+Dev_Abs(msg.chat_id_, msg.id_, 1, "⌁︙انضمام الاعضاء اليوم ↫ *"..EntryNumber.."*\n⌁︙مغادرة الاعضاء اليوم ↫ *"..ExitNumber.."*\n⌁︙عدد الرسائل اليوم ↫ *"..MsgNumberDay.."*\n⌁︙نسبة التفاعل اليوم ↫ *"..math.random(40,100).."%*", 1, 'md') 
 end
 if text == 'ر' or text == "رر" then
 local Jabwa = LuaTele.getUser(msg.sender_id.user_id)
@@ -2338,12 +2341,12 @@ https.request("https://api.telegram.org/bot"..Token.."/sendphoto?chat_id=" .. ms
 end
 end
 if text == 'تفاعلي' or text == 'نشاطي' then 
-bot.sendText(msg.chat_id,msg.id,"*"..Total_message((redis:get(bot_id..":"..msg.chat_id..":"..msg.sender_id.user_id..":message") or 1)).."*","md",true)   
+sendText(msg.chat_id,msg.id,"*"..Total_message((redis:get(bot_id..":"..msg.chat_id..":"..msg.sender_id.user_id..":message") or 1)).."*","md",true)   
 return false 
 end
 if text and text:match('^اهداء @(%S+)$') then 
 local UserName = text:match('^اهداء @(%S+)$')  
-mmsg = bot.getMessage(msg.chat_id,msg.reply_to_message_id) 
+mmsg = getMessage(msg.chat_id,msg.reply_to_message_id) 
 if mmsg and mmsg.content then 
 if mmsg.content.luatele ~= "messageVoiceNote" and mmsg.content.luatele ~= "messageAudio" then 
 return bot.sendText(msg.chat_id,msg.id,'*✮ عذرأ لا ادعم هذا النوع من الاهدائات*',"md",true)   
@@ -2365,15 +2368,47 @@ return bot.sendText(msg.chat_id,msg.reply_to_message_id,'*✮ هذا الاهد�
 end 
 end 
 end
-if text == ('ابلاغ') or text == ('تبليغ') and msg.reply_to_message_id ~= 0 then if msg.can_be_deleted_for_all_users == false then return bot.sendText(msg.chat_id,msg.id,"\n*✮ عذراً البوت ليس ادمن في الكروب يرجى رفعه وتفعيل الصلاحيات له *","md",true)   end if GetInfoBot(msg).Delmsg == false then return bot.sendText(msg.chat_id,msg.id,'\n*✮ البوت ليس لديه صلاحيه مسح الرسائل* ',"md",true)   end local Message_Reply = bot.getMessage(msg.chat_id, msg.reply_to_message_id) local UserInfo = bot.getUser(Message_Reply.sender_id.user_id) if UserInfo.message == "Invalid user ID" then 
+if text == ('ابلاغ') or text == ('تبليغ') and msg.reply_to_message_id ~= 0 then 
+if msg.can_be_deleted_for_all_users == false then 
+return bot.sendText(msg.chat_id,msg.id,"\n*✮ عذراً البوت ليس ادمن في الكروب يرجى رفعه وتفعيل الصلاحيات له *","md",true)   
+end 
+if GetInfoBot(msg).Delmsg == false then 
+return bot.sendText(msg.chat_id,msg.id,'\n*✮ البوت ليس لديه صلاحيه مسح الرسائل* ',"md",true)   end 
+local Message_Reply = bot.getMessage(msg.chat_id, msg.reply_to_message_id) 
+local UserInfo = bot.getUser(Message_Reply.sender_id.user_id) 
+if UserInfo.message == "Invalid user ID" then 
 return bot.sendText(msg.chat_id,msg.id,"\n✮ عذراً تستطيع فقط استخدام الامر على المستخدمين ","md",true)   
-end if UserInfo and UserInfo.type and UserInfo.type.luatele == "userTypeBot" then return bot.sendText(msg.chat_id,msg.id,"\n✮ عذراً لا تستطيع استخدام الامر على البوت ","md",true)   end 
+end 
+if UserInfo and UserInfo.type and UserInfo.type.luatele == "userTypeBot" then 
+return bot.sendText(msg.chat_id,msg.id,"\n✮ عذراً لا تستطيع استخدام الامر على البوت ","md",true)   
+end 
 if not Norank(Message_Reply.sender_id.user_id,msg.chat_id) then 
 return bot.sendText(msg.chat_id,msg.id,"\n*✮ عذراً لا تستطيع استخدام الامر على { "..Get_Rank(Message_Reply.sender_id.user_id,msg.chat_id).." } *","md",true)   
-end local Info_Members = bot.getSupergroupMembers(msg.chat_id, "Administrators", "*", 0, 200) local List_Members = Info_Members.members for k, v in pairs(List_Members) do if Info_Members.members[k].status.luatele == "chatMemberStatusCreator" then local UserInfo = bot.getUser(v.member_id.user_id) if UserInfo.first_name == "" then bot.sendText(msg.chat_id,msg.id,"*✮ المالك حسابه محذوف ✮*","md",true)   return false end local photo = bot.getUserProfilePhotos(v.member_id.user_id) if UserInfo.username then Creatorrr = "*✮ مالك الكروب ~⪼ @"..UserInfo.username.."*\n" else Creatorrr = "*✮ مالك الكروب ~⪼ *["..UserInfo.first_name.."](tg://user?id="..UserInfo.id..")\n" end 
+end 
+local Info_Members = bot.getSupergroupMembers(msg.chat_id, "Administrators", "*", 0, 200) 
+local List_Members = Info_Members.members 
+for k, v in pairs(List_Members) do 
+if Info_Members.members[k].status.luatele == "chatMemberStatusCreator" then 
+local UserInfo = bot.getUser(v.member_id.user_id) 
+if UserInfo.first_name == "" then 
+bot.sendText(msg.chat_id,msg.id,"*✮ المالك حسابه محذوف ✮*","md",true)   
+return false 
+end 
+local photo = bot.getUserProfilePhotos(v.member_id.user_id) 
+if UserInfo.username then 
+Creatorrr = "*✮ مالك الكروب ~⪼ @"..UserInfo.username.."*\n" 
+else 
+Creatorrr = "*✮ مالك الكروب ~⪼ *["..UserInfo.first_name.."](tg://user?id="..UserInfo.id..")\n" 
+end 
 if UserInfo.first_name then 
 Creat = ""..UserInfo.first_name.."\n" 
-else Creat = "✮ مالك الكروب \n" end end end bot.sendText(msg.chat_id,msg.id,Reply_Status(Message_Reply.sender_id.user_id,"✮ تم الابلاغ على رسالته\n━━━━━━━━━━━\n"..Creatorrr.."").heloo,"md",true) 
+else 
+Creat = "✮ مالك الكروب \n" 
+end 
+end 
+end 
+bot.sendText(msg.chat_id,msg.id,Reply_Status(Message_Reply.sender_id.user_id,"✮ تم الابلاغ على رسالته\n━━━━━━━━━━━\n"..Creatorrr.."").heloo,"md",true) 
+
 
 end
 if text and text:match('^تحكم @(%S+)$') then
@@ -5279,17 +5314,26 @@ Redis:set(Tshak.."Tshak:lockalllll"..msg_chat_id,"on")
 LuaTele.sendText(msg_chat_id,msg_id,Reply_Status(msg.sender_id.user_id,"⌁︙ تم فتح @all هنا").Lock,"md",true)  
 return false
 end
-if text == 'مستقبلي'  or text == "مراتي"  or text == "جوزي"   and tonumber(msg.reply_to_message_id) > 0    thenlocal data = LuaTele.getMessage(msg.chat_id, msg.reply_to_message_id)if data.content.photo thenif data.content.photo.sizes[1].photo.remote.id thenidPhoto = data.content.photo.sizes[1].photo.remote.idelseif data.content.photo.sizes[2].photo.remote.id thenidPhoto = data.content.photo.sizes[2].photo.remote.id
+if text == 'مستقبلي'  or text == "مراتي"  or text == "جوزي"   and tonumber(msg.reply_to_message_id) > 0    then
+local data = LuaTele.getMessage(msg.chat_id, msg.reply_to_message_id)
+if data.content.photo then
+if data.content.photo.sizes[1].photo.remote.id then
+idPhoto = data.content.photo.sizes[1].photo.remote.id
+elseif data.content.photo.sizes[2].photo.remote.id then
+idPhoto = data.content.photo.sizes[2].photo.remote.id
 elseif data.content.photo.sizes[3].photo.remote.id then
 idPhoto = data.content.photo.sizes[3].photo.remote.id
-endlocal Info_Members = LuaTele.searchChatMembers(msg_chat_id, "*", 200)
+end
+local Info_Members = LuaTele.searchChatMembers(msg_chat_id, "*", 200)
 x = 0 
 tags = 0 
 local list = Info_Members.members
-v = list[math.random(#list)]local UserInfo = LuaTele.getUser(v.member_id.user_id)
+v = list[math.random(#list)]
+local UserInfo = LuaTele.getUser(v.member_id.user_id)
 local photo = LuaTele.getUserProfilePhotos(UserInfo.id)
 if x == 1 or x == tags or k == 0 then 
-tags = x + 1 t = "دا مستقبلك ونصيبك وقسمتك  ،😂❤️ \n"
+tags = x + 1 
+t = "دا مستقبلك ونصيبك وقسمتك  ،😂❤️ \n"
 end 
 x = x + 1
 if UserInfo.first_name ~= '' then
@@ -8661,7 +8705,8 @@ local NcHlink = (Redis:get(Tshak.."Tshak:CHlink:Bot") or "↯︙عذراً لا�
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = NcH, url = 't.me/'..Redis:get(Tshak..'Tshak:Channel:Join')},},}}
 return LuaTele.sendText(msg.chat_id,msg.id,NcHlink,"md",false, false, false, false, reply_markup) end
 local R = Redis:scard(Tshak.."Tshak:List:Rd:Sudo")
-local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = '‹ غنيلي ›', data = msg.sender_id.user_id..'/Song'},},{{text = '‹ شعر ›', data = msg.sender_id.user_id..'/voice'},{text = '‹ اغنيه ›', data = msg.sender_id.user_id..'/Mp'},},{{text = '‹ ميمز ›', data = msg.sender_id.user_id..'/Memz'},{text = '‹ ريمكس ›', data = msg.sender_id.user_id..'/Remix'},},{{text = '‹ انمي ›', data = msg.sender_id.user_id..'/Anime'},{text = '‹ صوره ›', data = msg.sender_id.user_id..'/Photos'},},{{text = '‹ مسلسل ›', data = msg.sender_id.user_id..'/Series'},{text = '‹ فلم ›', data = msg.sender_id.user_id..'/Movies'},},{{text = '‹ متحركه ›', data = msg.sender_id.user_id..'/animation'},},{{text = '- سورس تشاك .', url = 't.me/sourcetshak'},},}}return LuaTele.sendText(msg_chat_id, msg_id, "↯︙يمكنك اختيار أحد اوامر التسليه ⇜ ⤈", 'md', false, false, false, false, reply_markup) end
+local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = '‹ غنيلي ›', data = msg.sender_id.user_id..'/Song'},},{{text = '‹ شعر ›', data = msg.sender_id.user_id..'/voice'},{text = '‹ اغنيه ›', data = msg.sender_id.user_id..'/Mp'},},{{text = '‹ ميمز ›', data = msg.sender_id.user_id..'/Memz'},{text = '‹ ريمكس ›', data = msg.sender_id.user_id..'/Remix'},},{{text = '‹ انمي ›', data = msg.sender_id.user_id..'/Anime'},{text = '‹ صوره ›', data = msg.sender_id.user_id..'/Photos'},},{{text = '‹ مسلسل ›', data = msg.sender_id.user_id..'/Series'},{text = '‹ فلم ›', data = msg.sender_id.user_id..'/Movies'},},{{text = '‹ متحركه ›', data = msg.sender_id.user_id..'/animation'},},{{text = '- سورس تشاك .', url = 't.me/sourcetshak'},},}}
+return LuaTele.sendText(msg_chat_id, msg_id, "↯︙يمكنك اختيار أحد اوامر التسليه ⇜ ⤈", 'md', false, false, false, false, reply_markup) end
 
 -- Lar --
 if text == "اضف رد انلاين" then
@@ -13573,9 +13618,13 @@ LuaTele.sendText(msg.chat_id,msg.id,Reply_Status(msg.sender_id.user_id,"* - تم
 end
 end
 -----
-if text == "تفعيل سمسمي" thenif not msg.Manger thenreturn send(msg.chat_id,msg.id,'\n*• هذا الامر يخص  '..Controller_Num(6)..' * ',"md",true)  
+if text == "تفعيل سمسمي" then
+if not msg.Manger then
+return send(msg.chat_id,msg.id,'\n*• هذا الامر يخص  '..Controller_Num(6)..' * ',"md",true)  
 end
-Redis:del(Tshak.."smsme"..msg.chat_id)send(msg.chat_id,msg.id,"• تم تفعيل سمسمي")end
+Redis:del(Tshak.."smsme"..msg.chat_id)
+send(msg.chat_id,msg.id,"• تم تفعيل سمسمي")
+end
 if text == "تعطيل سمسمي" then
 if not msg.Manger then
 return send(msg.chat_id,msg.id,'\n*• هذا الامر يخص  '..Controller_Num(6)..' * ',"md",true)  
@@ -13586,14 +13635,17 @@ end
 if text == "تفعيل سمسمي عام" then
 if not msg.Asasy then 
 return send(msg.chat_id,msg.id,'\n*• هذا الامر يخص { '..Controller_Num(1)..' }* ',"md",true)  
-endRedis:del(Tshak.."smsme")
+end
+Redis:del(Tshak.."smsme")
 send(msg.chat_id,msg.id,"• تم تفعيل سمسمي عام")
 end
-if text == "تعطيل سمسمي عام" thenif not msg.Asasy then 
+if text == "تعطيل سمسمي عام" then
+if not msg.Asasy then 
 return send(msg.chat_id,msg.id,'\n*• هذا الامر يخص { '..Controller_Num(1)..' }* ',"md",true)  
 end
 Redis:set(Tshak.."smsme",true)
-send(msg.chat_id,msg.id,"• تم تعطيل سمسمي عام")end
+send(msg.chat_id,msg.id,"• تم تعطيل سمسمي عام")
+end
 if text == "بيست" or text == "بيستي" then
 local Info_Members = LuaTele.searchChatMembers(msg.chat_id, "*", 200)
 local List = Info_Members.members
