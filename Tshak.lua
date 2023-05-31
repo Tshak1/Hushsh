@@ -2289,8 +2289,7 @@ UserInfousername = 'لا يوجد'
 end
 return LuaTele.sendText(msg_chat_id,msg_id,'\n⌁︙معرفك ↫ ‹ '..UserInfousername..' ›',"md",true, false, false, false, reply_markup)
 end
-if text == 'انا منو' or text == "منو اني" then
-if not Redis:get(Tshak.."Tshak:Status:IdPhoto"..msg_chat_id) then
+if text == 'ررر' or text == "رتب" then
 return false
 end
 local Jabwa = LuaTele.getUser(msg.sender_id.user_id)
