@@ -2289,7 +2289,7 @@ UserInfousername = 'لا يوجد'
 end
 return LuaTele.sendText(msg_chat_id,msg_id,'\n⌁︙معرفك ↫ ‹ '..UserInfousername..' ›',"md",true, false, false, false, reply_markup)
 end
-if text == " تاك" or text == "تاكو"  then 
+if text == " منو انا" or text == "منو اني"  then 
 local Info_Members = LuaTele.searchChatMembers(msg_chat_id, "*", 200)
 x = 0 
 tags = 0 
@@ -2318,9 +2318,9 @@ end
 end
 
 if text == "التفاعل"  then 
-local EntryNumber = (DevAbs:get(Tshak..'Abs:EntryNumber'..msg.chat_id_..':'..os.date('%d')) or 0) 
-local ExitNumber = (DevAbs:get(Tshak..'Abs:ExitNumber'..msg.chat_id_..':'..os.date('%d')) or 0) 
-local MsgNumberDay = (DevAbs:get(Tshak..'Abs:MsgNumberDay'..msg.chat_id_..':'..os.date('%d')) or 0) 
+local EntryNumber = (Tshak..'Abs:EntryNumber'..msg.chat_id_..':'..os.date('%d')) or 0) 
+local ExitNumber = (Tshak..'Abs:ExitNumber'..msg.chat_id_..':'..os.date('%d')) or 0) 
+local MsgNumberDay = (Tshak..'Abs:MsgNumberDay'..msg.chat_id_..':'..os.date('%d')) or 0) 
 Dev_Abs(msg.chat_id_, msg.id_, 1, "⌁︙انضمام الاعضاء اليوم ↫ *"..EntryNumber.."*\n⌁︙مغادرة الاعضاء اليوم ↫ *"..ExitNumber.."*\n⌁︙عدد الرسائل اليوم ↫ *"..MsgNumberDay.."*\n⌁︙نسبة التفاعل اليوم ↫ *"..math.random(40,100).."%*", 1, 'md') 
 end
 if text == 'ر' or text == "رر" then
@@ -2341,12 +2341,12 @@ https.request("https://api.telegram.org/bot"..Token.."/sendphoto?chat_id=" .. ms
 end
 end
 if text == 'تفاعلي' or text == 'نشاطي' then 
-sendText(msg.chat_id,msg.id,"*"..Total_message((redis:get(bot_id..":"..msg.chat_id..":"..msg.sender_id.user_id..":message") or 1)).."*","md",true)   
+sendText(msg.chat_id,msg.id,"*"..Total_message((get(bot_id..":"..msg.chat_id..":"..msg.sender_id.user_id..":message") or 1)).."*","md",true)   
 return false 
 end
 if text and text:match('^اهداء @(%S+)$') then 
 local UserName = text:match('^اهداء @(%S+)$')  
-mmsg = getMessage(msg.chat_id,msg.reply_to_message_id) 
+mmsg = (msg.chat_id,msg.reply_to_message_id) 
 if mmsg and mmsg.content then 
 if mmsg.content.luatele ~= "messageVoiceNote" and mmsg.content.luatele ~= "messageAudio" then 
 return bot.sendText(msg.chat_id,msg.id,'*✮ عذرأ لا ادعم هذا النوع من الاهدائات*',"md",true)   
@@ -2374,7 +2374,7 @@ return bot.sendText(msg.chat_id,msg.id,"\n*✮ عذراً البوت ليس اد
 end 
 if GetInfoBot(msg).Delmsg == false then 
 return bot.sendText(msg.chat_id,msg.id,'\n*✮ البوت ليس لديه صلاحيه مسح الرسائل* ',"md",true)   end 
-local Message_Reply = bot.getMessage(msg.chat_id, msg.reply_to_message_id) 
+local Message_Reply = (msg.chat_id, msg.reply_to_message_id) 
 local UserInfo = bot.getUser(Message_Reply.sender_id.user_id) 
 if UserInfo.message == "Invalid user ID" then 
 return bot.sendText(msg.chat_id,msg.id,"\n✮ عذراً تستطيع فقط استخدام الامر على المستخدمين ","md",true)   
