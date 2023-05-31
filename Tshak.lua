@@ -2316,13 +2316,6 @@ end
 end  
 end
 end
-
-if text == "التفاعل"  then 
-local EntryNumber = (Tshak..'Abs:EntryNumber'..msg.chat_id_..':'..os.date('%d')) or 0) 
-local ExitNumber = (Tshak..'Abs:ExitNumber'..msg.chat_id_..':'..os.date('%d')) or 0) 
-local MsgNumberDay = (Tshak..'Abs:MsgNumberDay'..msg.chat_id_..':'..os.date('%d')) or 0) 
-Dev_Abs(msg.chat_id_, msg.id_, 1, "⌁︙انضمام الاعضاء اليوم ↫ *"..EntryNumber.."*\n⌁︙مغادرة الاعضاء اليوم ↫ *"..ExitNumber.."*\n⌁︙عدد الرسائل اليوم ↫ *"..MsgNumberDay.."*\n⌁︙نسبة التفاعل اليوم ↫ *"..math.random(40,100).."%*", 1, 'md') 
-end
 if text == 'ر' or text == "رر" then
 local Jabwa = LuaTele.getUser(msg.sender_id.user_id)
 local photo = LuaTele.getUserProfilePhotos(msg.sender_id.user_id)
