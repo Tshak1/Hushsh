@@ -2289,22 +2289,20 @@ UserInfousername = 'لا يوجد'
 end
 return LuaTele.sendText(msg_chat_id,msg_id,'\n⌁︙معرفك ↫ ‹ '..UserInfousername..' ›',"md",true, false, false, false, reply_markup)
 end
-if text == 'ررر' or text == "رررر" then
+if text == 'رر' or text == "ر" then
 if not Redis:get(Tshak.."Tshak:Status:IdPhoto"..msg_chat_id) then
 return false
 end
 local Jabwa = LuaTele.getUser(msg.sender_id.user_id)
 local photo = LuaTele.getUserProfilePhotos(msg.sender_id.user_id)
 local nsws = 'تفاعلك'..TotalMsgT
-local naws = 'اسمك'..Name
 local news = '⌁︙حبي انت ↫'..msg.Name_Controller
 if photo.total_count > 0 then
 data = {} 
 data.inline_keyboard = {
 {
 {text = news,url = "https://t.me/"..Jabwa.username..""}, 
-{text = naws,url = "https://t.me/"..Jabwa.username..""}, 
-{text = nsws,url = "https://t.me/"..Jabwa.username..""},
+{text = nsws,url = "https://t.me/"..Jabwa.username..""}, 
 },
 }
 local msgg = msg_id/2097152/0.5
