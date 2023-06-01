@@ -2295,7 +2295,7 @@ return false
 end
 local Jabwa = LuaTele.getUser(msg.sender_id.user_id)
 local photo = LuaTele.getUserProfilePhotos(msg.sender_id.user_id)
-local news = '- رتبتك : '..
+local news = '- رتبتك : '..msg.Name_Controller
 if photo.total_count > 0 then
 data = {} 
 data.inline_keyboard = {
@@ -13500,7 +13500,13 @@ end
 if text == 'تفاعلي' or text == 'حددي شخصيتي' or text == 'حدد شخصيتي' then
 local texting = {
 "٪؜10",
-"٪؜55","٪؜16","٪؜33","٪؜70","٪؜30","٪؜80","٪؜20",
+"٪؜55",
+"٪؜16",
+"٪؜33",
+"٪؜70",
+"٪؜30",
+"٪؜80",
+"٪؜20",
 "66٪؜",
 "50٪؜",
 "40٪؜",
@@ -13544,7 +13550,8 @@ local Info_Members = LuaTele.searchChatMembers(msg_chat_id, "*", 200)
 x = 0 
 tags = 0 
 local list = Info_Members.members
-v = list[math.random(#list)]local UserInfo = LuaTele.getUser(v.member_id.user_id)
+v = list[math.random(#list)]
+local UserInfo = LuaTele.getUser(v.member_id.user_id)
 local photo = LuaTele.getUserProfilePhotos(UserInfo.id)
 if x == 1 or x == tags or k == 0 then 
 tags = x + 1 
@@ -13552,13 +13559,15 @@ t = "دا مستقبلك ونصيبك وقسمتك  ،😂❤️ \n"
 end 
 x = x + 1 
 if UserInfo.first_name ~= '' then
-if x == 1 or x == tags or k == 0 then if photo.total_count > 0 then
+if x == 1 or x == tags or k == 0 then 
+if photo.total_count > 0 then
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {
  {
 {text = '🌟 هذي هيا نصيبك وقمستك 🌟',  url = 't.me/'..UserInfo.username }
 },
 }
-}return LuaTele.sendPhoto(msg.chat_id, msg.id, photo.photos[1].sizes[#photo.photos[1].sizes].photo.remote.id,t.." \n [@"..UserInfo.username.."]\n","md", true, nil, nil, nil, nil, nil, nil, nil, nil, reply_markup )
+}
+return LuaTele.sendPhoto(msg.chat_id, msg.id, photo.photos[1].sizes[#photo.photos[1].sizes].photo.remote.id,t.." \n [@"..UserInfo.username.."]\n","md", true, nil, nil, nil, nil, nil, nil, nil, nil, reply_markup )
 end
 end
 end
