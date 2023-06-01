@@ -2295,7 +2295,7 @@ return false
 end
 local Jabwa = LuaTele.getUser(msg.sender_id.user_id)
 local photo = LuaTele.getUserProfilePhotos(msg.sender_id.user_id)
-local news = '- رتبتك : '..
+local news = '- رتبتك : '..Name
 if photo.total_count > 0 then
 data = {} 
 data.inline_keyboard = {
@@ -5647,7 +5647,8 @@ v = list[math.random(#list)]
 local UserInfo = LuaTele.getUser(v.member_id.user_id)
 local photo = LuaTele.getUserProfilePhotos(UserInfo.id)
 if x == 1 or x == tags or k == 0 then 
-tags = x + 1 t = "اختارتلك مراتك يا نجم يلا بارك الله لكم وبارك عليكم ،😂❤️ \n"
+tags = x + 1 
+t = "اختارتلك مراتك يا نجم يلا بارك الله لكم وبارك عليكم ،😂❤️ \n"
 end 
 x = x + 1 
 if UserInfo.first_name ~= '' then
@@ -13526,7 +13527,13 @@ end
 if text == 'تفاعلي' or text == 'حددي شخصيتي' or text == 'حدد شخصيتي' then
 local texting = {
 "٪؜10",
-"٪؜55","٪؜16","٪؜33","٪؜70","٪؜30","٪؜80","٪؜20",
+"٪؜55",
+"٪؜16",
+"٪؜33",
+"٪؜70",
+"٪؜30",
+"٪؜80",
+"٪؜20",
 "66٪؜",
 "50٪؜",
 "40٪؜",
