@@ -2351,7 +2351,8 @@ local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {
 return LuaTele.sendText(msg.chat_id,msg.id,'*\n- يمكنك تحكم بالعضو عن طريق الازرار \n تعني ان معه الرتبه : ✓ \nتعني انه ليس معه رتبه : ✗*',"md",false, false, false, false, reply_markup)
 end
 if text == ' رتبتيي' or text == " انا منو" then
-if not Redis:get(Tshak.."Tshak:Status:IdPhoto"..msg_chat_id) thenreturn false
+if not Redis:get(Tshak.."Tshak:Status:IdPhoto"..msg_chat_id) then
+return false
 end
 local Jabwa = LuaTele.getUser(msg.sender_id.user_id)
 local photo = LuaTele.getUserProfilePhotos(msg.sender_id.user_id)
@@ -4138,7 +4139,7 @@ LuaTele.sendText(msg_chat_id,msg_id,'⌁︙عدد المسح الحالي ↫ �
 -- 
 if msg.content.video_note or msg.content.document or msg.content.audio or msg.content.video or msg.content.voice_note or msg.content.sticker or msg.content.animation or msg.content.photo or msg.content.video_sticker then      
 Redis:sadd(Tshak.."MsgDell"..msg.chat_id, msg.id)
-if Redis:get(TheAhmEdDev.."Tshak:Status:Del:Media"..msg.chat_id) then     
+if Redis:get(Tshak.."Tshak:Status:Del:Media"..msg.chat_id) then     
 local gmedia = Redis:scard(Tshak.."MsgDell"..msg.chat_id)  
 if gmedia >= tonumber((Redis:get(Tshak..'Tshak:Num:Add:Bot'..msg_chat_id) or 150)) then
 local liste = Redis:smembers(Tshak.."MsgDell"..msg.chat_id)
@@ -5656,7 +5657,8 @@ local NcH = (Redis:get(Tshak.."Tshak:CH:Bot") or Get_Chat.title)
 local NcHlink = (Redis:get(Tshak.."Tshak:CHlink:Bot") or "⌁︙عذراً لاتستطيع استخدام البوت !\n⌁︙عليك الاشتراك في القناة اولاً :")
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = NcH, url = 't.me/'..Redis:get(Tshak..'Tshak:Channel:Join')},},}}
 return LuaTele.sendText(msg.chat_id,msg.id,NcHlink,"md",false, false, false, false, reply_markup) end 
-Redis:del(Tshak.."Tshak:Lock:tagservrbot"..msg_chat_id)   list ={"Lock:Channel"}
+Redis:del(Tshak.."Tshak:Lock:tagservrbot"..msg_chat_id)   
+list ={"Lock:Channel"}
 for i,lock in pairs(list) do 
 Redis:del(Tshak..'Tshak:'..lock..msg_chat_id)   
 end
@@ -5735,7 +5737,8 @@ v = list[math.random(#list)]
 local UserInfo = LuaTele.getUser(v.member_id.user_id)
 local photo = LuaTele.getUserProfilePhotos(UserInfo.id)
 if x == 1 or x == tags or k == 0 then 
-tags = x + 1 t = "اختارتلك مراتك يا نجم يلا بارك الله لكم وبارك عليكم ،😂❤️ \n"
+tags = x + 1 
+t = "اختارتلك مراتك يا نجم يلا بارك الله لكم وبارك عليكم ،😂❤️ \n"
 end 
 x = x + 1 
 if UserInfo.first_name ~= '' then
@@ -13623,7 +13626,13 @@ end
 if text == 'تفاعلي' or text == 'حددي شخصيتي' or text == 'حدد شخصيتي' then
 local texting = {
 "٪؜10",
-"٪؜55","٪؜16","٪؜33","٪؜70","٪؜30","٪؜80","٪؜20",
+"٪؜55",
+"٪؜16",
+"٪؜33",
+"٪؜70",
+"٪؜30",
+"٪؜80",
+"٪؜20",
 "66٪؜",
 "50٪؜",
 "40٪؜",
