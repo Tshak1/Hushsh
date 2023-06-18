@@ -373,44 +373,6 @@ end
 
 -- ############################################################################
 
-local function custom(command, send, parse)
-    command = string.upper(command)
-    return function(client, ...)
-        send(client, command, ...)
-        local reply = response.read(client)
-
-        if type(reply) == 'table' and reply.queued then
-            reply.parser = parse
-            return reply
-        else
-            if parse then
-                return parse(reply, command, ...)
-            end
-            return reply
-        end
-    end
-end
-
-local function command(command, opts)
-    if opts == nil or type(opts) == 'function' then
-        return custom(command, request.multibulk, opts)
-    else
-        return custom(command, opts.request or request.multibulk, opts.response)
-    end
-end
-
-local define_command_impl = function(target, name, opts)
-    local opts = opts or {}
-    target[string.lower(name)] = custom(
-        opts.command or string.upper(name),
-        opts.request or request.multibulk,
-        opts.response or nil
-    )
-end
-
-local undefine_command_impl = function(target, name)
-    target[string.lower(name)] = nil
-end
 
 -- ############################################################################
 
